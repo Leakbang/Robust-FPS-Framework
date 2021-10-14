@@ -10,15 +10,15 @@ func _ready():
 	$InteractText.modulate = Color(0.81, 0.5, 0.09, 0)
 
 func _physics_process(delta):
-	if get_collider() and $InteractTimer.is_stopped():
+	Target = get_collider();
+	if get_collider() and $InteractTimer.is_stopped() and Target.is_in_group("Interactable"):
 		prompt()
 	else:
 		unprompt()
 	
 	if Input.is_key_pressed(KEY_E) or Input.is_joy_button_pressed(0, JOY_XBOX_Y):
 		if can_use:
-			if get_collider() and $InteractTimer.is_stopped():
-				Target = get_collider()
+			if get_collider() and $InteractTimer.is_stopped() and Target.is_in_group("Interactable"):
 				Target._Interact()
 				$InteractTimer.start()
 		
