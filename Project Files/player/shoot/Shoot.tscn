@@ -57,6 +57,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, -0.18 )
 
 [node name="Weapon" type="MeshInstance" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway"]
+cast_shadow = 0
 mesh = ExtResource( 2 )
 material/0 = null
 
