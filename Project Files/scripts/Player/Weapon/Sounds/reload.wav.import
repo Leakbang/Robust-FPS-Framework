@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/empty.wav-b193091a96b2bfa8e69b40a4b35d93d1.sample"
+path="res://.import/reload.wav-7c6da5d762dcd5abde1c177faca2e70d.sample"
 
 [deps]
 
-source_file="res://scripts/Player/Weapon/empty.wav"
-dest_files=[ "res://.import/empty.wav-b193091a96b2bfa8e69b40a4b35d93d1.sample" ]
+source_file="res://scripts/Player/Weapon/Sounds/reload.wav"
+dest_files=[ "res://.import/reload.wav-7c6da5d762dcd5abde1c177faca2e70d.sample" ]
 
 [params]
 

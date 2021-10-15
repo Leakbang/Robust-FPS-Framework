@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rifle_shoot.wav-233c37c53acf89aab23cadbdc07a283c.sample"
+
+[deps]
+
+source_file="res://scripts/Player/Weapon/Sounds/rifle_shoot.wav"
+dest_files=[ "res://.import/rifle_shoot.wav-233c37c53acf89aab23cadbdc07a283c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
