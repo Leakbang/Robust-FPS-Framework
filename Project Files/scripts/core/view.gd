@@ -47,7 +47,7 @@ var rollspeed : float = 300.0         # default: 300.0
 var tiltextra : float = 2.0           # default: 2.0
 
 #View Idle
-var idlescale : float= 1.6            # default: 1.6
+var idlescale : float= 0           # default: 1.6
 var iyaw_cycle : float = 1.5          # default: 1.5
 var iroll_cycle : float = 1.0         # default: 1.0
 var ipitch_cycle : float = 2.0        # default: 2.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Knife.obj-604516cf1d2b539a941f168b09e8fc58.mesh"
+
+[deps]
+
+files=[ "res://.import/Knife.obj-604516cf1d2b539a941f168b09e8fc58.mesh" ]
+
+source_file="res://scripts/Player/Weapon/Knife.obj"
+dest_files=[ "res://.import/Knife.obj-604516cf1d2b539a941f168b09e8fc58.mesh", "res://.import/Knife.obj-604516cf1d2b539a941f168b09e8fc58.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

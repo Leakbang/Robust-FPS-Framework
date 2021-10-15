@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/core/view_extended.gd" type="Script" id=1]
 [ext_resource path="res://scripts/core/pmove_extended.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://audio/concrete_0.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scripts/Player/Flashlight/Flashlight.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/Player/Interact/Grab.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/Player/Weapon/Shoot.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CylinderShape" id=1]
 height = 3.6
@@ -15,15 +16,11 @@ height = 3.6
 collision_mask = 3
 script = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
-
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="Head"]
-fov = 90.0
 far = 334.8
 
 [node name="ViewModel" type="Spatial" parent="Head/Camera"]
@@ -32,7 +29,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4, -0.75 )
 [node name="Flashlight" parent="Head/Camera/ViewModel" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03516, -0.360807, 0 )
 
+[node name="Shoot" parent="Head/Camera/ViewModel" instance=ExtResource( 8 )]
+
 [node name="Grab" parent="Head/Camera" instance=ExtResource( 7 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
 
 [node name="Audio" type="Node" parent="."]
 script = ExtResource( 3 )

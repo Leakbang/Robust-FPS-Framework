@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/AK-47_magazine.obj-4f1731d04bb3c02a5d35e974dbed715e.mesh"
+
+[deps]
+
+files=[ "res://.import/AK-47_magazine.obj-4f1731d04bb3c02a5d35e974dbed715e.mesh" ]
+
+source_file="res://scripts/Player/Weapon/AK-47_magazine.obj"
+dest_files=[ "res://.import/AK-47_magazine.obj-4f1731d04bb3c02a5d35e974dbed715e.mesh", "res://.import/AK-47_magazine.obj-4f1731d04bb3c02a5d35e974dbed715e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
