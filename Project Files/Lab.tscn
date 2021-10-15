@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://materials/dark_grey.tres" type="Material" id=1]
+[ext_resource path="res://scripts/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Crate.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Environment" id=1]
+ssao_enabled = true
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="CubeMesh" id=3]
+
+[node name="World" type="Spatial"]
+
+[node name="Geometry" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Geometry"]
+material_override = ExtResource( 1 )
+use_collision = true
+width = 62.6278
+depth = 84.309
+
+[node name="CSGBox2" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09254, -57.4999 )
+material_override = ExtResource( 1 )
+use_collision = true
+width = 62.6278
+depth = 84.309
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.4995, 14 )
+
+[node name="Crate" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 2.37904, -9.41201 )
+
+[node name="Crate2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55279, 2.37904, -9.41201 )
+
+[node name="Lighting" type="Spatial" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
+transform = Transform( 1, 0, 0, 0, 0.870553, 0.492074, 0, -0.492074, 0.870553, 0, 7.25114, 0 )
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="." groups=[
+"Useable",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 3 )
+material/0 = null

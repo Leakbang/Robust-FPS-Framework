@@ -15,4 +15,6 @@
  The source code in this repo is GPL3, however, check the original Licensing of the forked codes and files.
 
  ## Credits
- Original work forked from [Linko-3D](https://github.com/Linko-3D/First-Person-Controller-FPS)
+ It wouldn't have been possible without the incredible godot community. In particular I want to thank Linko-3D and Btan2 as my work is based on the work that they have done.
+ This contains massive chunks of code forked from [Linko-3D's FPS Controller](https://github.com/Linko-3D/First-Person-Controller-FPS) and [Btan2's Q_Move](https://github.com/Btan2/Q_Move).
+ They did the hard work.
