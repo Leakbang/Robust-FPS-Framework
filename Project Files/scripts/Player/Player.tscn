@@ -7,7 +7,7 @@
 [ext_resource path="res://audio/concrete_0.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scripts/Player/Flashlight/Flashlight.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/Player/UI/UI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scripts/Use.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scripts/Player/Use/Use.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CylinderShape" id=1]
 height = 3.6
