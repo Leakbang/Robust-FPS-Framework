@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/core/view_extended.gd" type="Script" id=1]
 [ext_resource path="res://scripts/core/pmove_extended.gd" type="Script" id=2]
@@ -6,14 +6,10 @@
 [ext_resource path="res://audio/windfall_1.ogg" type="AudioStream" id=4]
 [ext_resource path="res://audio/concrete_0.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scripts/Player/Flashlight/Flashlight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/Player/Interact/Grab.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CylinderShape" id=1]
 height = 3.6
-
-[sub_resource type="CubeMesh" id=2]
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0, 0.647059, 0.678431, 1 )
 
 [node name="Player" type="KinematicBody"]
 collision_mask = 3
@@ -33,13 +29,10 @@ far = 334.8
 [node name="ViewModel" type="Spatial" parent="Head/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4, -0.75 )
 
-[node name="Model" type="MeshInstance" parent="Head/Camera/ViewModel"]
-transform = Transform( 0.1, 0, 0, 0, 0.15, 0, 0, 0, 0.331, 0, 0, 0 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
-
 [node name="Flashlight" parent="Head/Camera/ViewModel" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03516, -0.360807, 0 )
+
+[node name="Grab" parent="Head/Camera" instance=ExtResource( 7 )]
 
 [node name="Audio" type="Node" parent="."]
 script = ExtResource( 3 )

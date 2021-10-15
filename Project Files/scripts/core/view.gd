@@ -42,7 +42,7 @@ var ql_bobup : float = 0.5            # default: 0.5
 var ql_bobcycle : float = 0.6         # default: 0.6
 
 #Roll
-var rollangles : float = 7.0          # default: 15.0
+var rollangles : float = 3.0          # default: 15.0
 var rollspeed : float = 300.0         # default: 300.0
 var tiltextra : float = 2.0           # default: 2.0
 
