@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/light_on.wav-2c8802f9cd5c1bae9e893ef9e6c00ecc.sample"
+
+[deps]
+
+source_file="res://scripts/Player/Flashlight/Sounds/light_on.wav"
+dest_files=[ "res://.import/light_on.wav-2c8802f9cd5c1bae9e893ef9e6c00ecc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

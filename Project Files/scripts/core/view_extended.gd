@@ -1,4 +1,4 @@
-extends "res://scripts/view.gd"
+extends "res://scripts/core/view.gd"
 
 """
 view_extended.gd

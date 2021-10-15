@@ -1,4 +1,4 @@
-extends "res://scripts/pmove.gd"
+extends "res://scripts/core/pmove.gd"
 
 """
 pmove_advanced.gd

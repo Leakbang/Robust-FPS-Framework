@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://materials/dark_grey.tres" type="Material" id=1]
+[ext_resource path="res://scripts/Player/Player.tscn" type="PackedScene" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Geometry" type="Spatial" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Geometry"]
+material_override = ExtResource( 1 )
+use_collision = true
+width = 36.1739
+depth = 26.2347
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.49955, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.937731, 0.347361, 0, -0.347361, 0.937731, 0, 7.25114, 0 )
+shadow_enabled = true
