@@ -31,20 +31,25 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="TerminalInterface"]
-margin_left = -281.393
-margin_top = -174.054
-margin_right = 383.607
-margin_bottom = 182.946
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -332.5
+margin_top = -178.5
+margin_right = 332.5
+margin_bottom = 178.5
 color = Color( 0, 0.00392157, 0.113725, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="TerminalInterface/ColorRect"]
-margin_left = 24.4547
-margin_top = 152.619
-margin_right = 188.455
-margin_bottom = 183.619
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -15.5
+margin_right = 164.0
+margin_bottom = 15.5
 theme = ExtResource( 1 )
 text = "Current Boxes:"
 align = 1
@@ -55,34 +60,26 @@ __meta__ = {
 }
 
 [node name="Counter" type="Label" parent="TerminalInterface/ColorRect"]
-margin_left = 197.073
-margin_top = 155.0
-margin_right = 260.073
-margin_bottom = 220.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 176.0
+margin_top = -15.5
+margin_right = 340.0
+margin_bottom = 15.5
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0.905882, 1, 1 )
-text = "0
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="TerminalInterface/ColorRect"]
-margin_left = 23.818
-margin_top = 229.198
-margin_right = 204.818
-margin_bottom = 266.198
-theme = ExtResource( 1 )
-text = "Refresh"
+custom_colors/font_color = Color( 0.698039, 0.94902, 1, 1 )
+text = "0"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Quit" type="Button" parent="TerminalInterface/ColorRect"]
-margin_left = 465.704
-margin_top = 16.2736
-margin_right = 646.704
-margin_bottom = 53.2736
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -180.0
+margin_bottom = 37.0
+mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 text = "Log out"
 __meta__ = {

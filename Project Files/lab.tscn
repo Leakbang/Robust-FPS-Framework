@@ -45,6 +45,32 @@ width = 0.943342
 height = 2.39527
 material = SubResource( 1 )
 
+[node name="CSGBox5" type="CSGBox" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0.147861, 1.32111, -11.562 )
+use_collision = true
+width = 14.8128
+height = 3.33249
+depth = 15.2111
+material = SubResource( 1 )
+
+[node name="CSGBox6" type="CSGBox" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0.147861, 1.32111, -11.2108 )
+operation = 2
+use_collision = true
+width = 13.9423
+height = 3.04533
+depth = 13.8416
+material = SubResource( 1 )
+
+[node name="CSGBox7" type="CSGBox" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, -0.576442, 1.32111, -4.18599 )
+operation = 2
+use_collision = true
+width = 1.67273
+height = 2.32889
+depth = 1.04129
+material = SubResource( 1 )
+
 [node name="CSGBox4" type="CSGBox" parent="CSGBox"]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 5.66343, 2.01339, 2.24645 )
 operation = 2
@@ -105,6 +131,36 @@ material/0 = ExtResource( 2 )
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 shape = SubResource( 4 )
 
+[node name="Box5" type="RigidBody" parent="." groups=[
+"Crate",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59424, 1.59467, -1.97961 )
+mass = 2.04082
+
+[node name="MeshInstance" type="MeshInstance" parent="Box5"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box5"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Box6" type="RigidBody" parent="." groups=[
+"Crate",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.28835, 1.59467, -1.87985 )
+mass = 2.04082
+
+[node name="MeshInstance" type="MeshInstance" parent="Box6"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box6"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+shape = SubResource( 4 )
+
 [node name="Box3" type="RigidBody" parent="." groups=[
 "Crate",
 ]]
@@ -126,8 +182,8 @@ transform = Transform( 0.0740987, 0, 0, 0, 0.52476, 0, 0, 0, 0.682288, 5.82183, 
 [node name="Platform" parent="." instance=ExtResource( 4 )]
 transform = Transform( 2.5, 0, 0, 0, 0.25, 0, 0, 0, 1.5, 4.20735, 0.305208, -2.59945 )
 
-[node name="Area" parent="Platform" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+[node name="MeshInstance" parent="Platform" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.417086 )
 
 [connection signal="body_entered" from="Platform/Area" to="StaticBody" method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Platform/Area" to="StaticBody" method="_on_Area_body_exited"]

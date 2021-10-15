@@ -14,10 +14,6 @@ config/name="Untitled-FPS"
 run/main_scene="res://lab.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Pause="*res://singletons/Pause.gd"
-
 [global]
 
 phys=false

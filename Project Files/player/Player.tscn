@@ -28,7 +28,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 [node name="Crosshair" parent="Head/Camera" instance=ExtResource( 3 )]
 
 [node name="Flashlight" parent="Head/Camera" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.259483, -0.330953, 0 )
 
 [node name="FootstepSound" parent="Head/Camera" instance=ExtResource( 6 )]
 
