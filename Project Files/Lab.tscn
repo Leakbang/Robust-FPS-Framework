@@ -1,25 +1,46 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://materials/dark_grey.tres" type="Material" id=1]
 [ext_resource path="res://scripts/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Crate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://materials/water/water.tres" type="Material" id=4]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="StreamTexture" id=1]
+flags = 7
+
+[sub_resource type="PanoramaSky" id=2]
+radiance_size = 4
+panorama = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_sky = SubResource( 2 )
 ssao_enabled = true
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=4]
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="PlaneMesh" id=6]
+size = Vector2( 13, 19 )
 
 [node name="World" type="Spatial"]
 
 [node name="Geometry" type="Spatial" parent="."]
 
 [node name="CSGBox" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
 material_override = ExtResource( 1 )
 use_collision = true
 width = 62.6278
+height = 10.0
 depth = 84.309
+
+[node name="CSGBox3" type="CSGBox" parent="Geometry/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, 0 )
+operation = 2
+width = 12.0
+height = 4.0
+depth = 18.0
 
 [node name="CSGBox2" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09254, -57.4999 )
@@ -44,7 +65,7 @@ transform = Transform( 1, 0, 0, 0, 0.870553, 0.492074, 0, -0.492074, 0.870553, 0
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
-environment = SubResource( 1 )
+environment = SubResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="." groups=[
 "Useable",
@@ -52,8 +73,13 @@ environment = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -11 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 3 )
+mesh = SubResource( 5 )
 material/0 = null
+
+[node name="Water" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.6, 0 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
