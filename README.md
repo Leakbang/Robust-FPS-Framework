@@ -20,3 +20,4 @@
  They did the hard work.  
 Water texture by [Valve](https://www.valvesoftware.com/en/)
 Draw debug tool by [Zylann](https://github.com/Zylann/godot_debug_draw)
+HDRI texture by [Greg Zaal](https://polyhaven.com/a/qwantani)
