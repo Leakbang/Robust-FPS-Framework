@@ -21,6 +21,7 @@ output_latency=25
 [autoload]
 
 Trace="*res://addons/trace.gd"
+DrawDebug="*res://addons/draw_debug.gd"
 
 [input]
 
