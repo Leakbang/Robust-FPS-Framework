@@ -34,9 +34,10 @@ func _process(delta):
 
 func _on_Area_body_entered(body):
 	if body is RigidBody:
+		if body.is_in_group("Metal"):
+			body.gravity_scale = 2
 		objects.append(body)
 		object_mass.append(body.weight)
-		print(water_level)
 
 
 func _on_Area_body_exited(body):

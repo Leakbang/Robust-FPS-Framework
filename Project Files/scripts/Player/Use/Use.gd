@@ -1,7 +1,7 @@
 extends RayCast
 
 var mass_limit = 50
-var throw_force = 5
+var throw_force = 20
 
 var object_grabbed = null
 

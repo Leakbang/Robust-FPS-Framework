@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://materials/dark_grey.tres" type="Material" id=1]
 [ext_resource path="res://scripts/Player/Player.tscn" type="PackedScene" id=2]
@@ -7,18 +7,15 @@
 [ext_resource path="res://scripts/Interactables/Metal_crate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://materials/sky.exr" type="Texture" id=6]
 
-[sub_resource type="PanoramaSky" id=2]
+[sub_resource type="PanoramaSky" id=1]
 radiance_size = 4
 panorama = ExtResource( 6 )
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 1 )
+background_sky_orientation = Basis( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1 )
 ssao_enabled = true
-
-[sub_resource type="BoxShape" id=4]
-
-[sub_resource type="CubeMesh" id=5]
 
 [node name="World" type="Spatial"]
 
@@ -26,11 +23,11 @@ ssao_enabled = true
 
 [node name="CSGBox" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
-material_override = ExtResource( 1 )
 use_collision = true
 width = 62.6278
 height = 10.0
 depth = 84.309
+material = ExtResource( 1 )
 
 [node name="CSGBox3" type="CSGBox" parent="Geometry/CSGBox"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, 0 )
@@ -38,13 +35,21 @@ operation = 2
 width = 12.0
 height = 4.0
 depth = 18.0
+material = ExtResource( 1 )
 
 [node name="CSGBox2" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09254, -57.4999 )
-material_override = ExtResource( 1 )
 use_collision = true
 width = 62.6278
 depth = 84.309
+material = ExtResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 3, -10 )
+width = 8.0
+height = 4.0
+depth = 1.0
+material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.4995, 14 )
@@ -62,23 +67,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55279, 2, -9.41201 )
 [node name="Lighting" type="Spatial" parent="."]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Lighting"]
-transform = Transform( 0.965926, 0.127358, -0.225316, 0, 0.870553, 0.492074, 0.258819, -0.475307, 0.84089, 0, 7.25114, 0 )
+transform = Transform( -0.798636, -0.273218, 0.536221, 0, 0.891007, 0.453991, -0.601815, 0.362573, -0.71159, 0, 7.25114, 0 )
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
-environment = SubResource( 3 )
-
-[node name="StaticBody" type="StaticBody" parent="." groups=[
-"Useable",
-]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -11 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 4 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 5 )
-material/0 = null
+environment = SubResource( 2 )
 
 [node name="Water" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -4.2, -7 )

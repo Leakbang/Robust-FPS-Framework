@@ -2,7 +2,7 @@
 
 [ext_resource path="res://materials/water/watera_normal.png" type="Texture" id=1]
 [ext_resource path="res://materials/water/waterb_normal.png" type="Texture" id=2]
-[ext_resource path="res://materials/water/water_normal.png" type="Texture" id=3]
+[ext_resource path="res://materials/water/water.png" type="Texture" id=3]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -40,8 +40,8 @@ void vertex() {
 void fragment() {
 	float time = TIME * speed;
 	
-	vec3 WaterLayer1 = texture(texture_normal, UV + time).rgb;
-	vec3 WaterLayer2 = texture(texture_normal_2, UV - time).rgb;
+	vec3 WaterLayer1 = texture(texture_normal, UV + time * 2.0).rgb;
+	vec3 WaterLayer2 = texture(texture_normal_2, UV * 0.75 - time).rgb;
 	vec3 WaterLayer3 = texture(texture_refraction, UV + time).rgb;
 	
 	vec2 uv_movement = UV * 4f;
@@ -77,21 +77,21 @@ void fragment() {
 [resource]
 shader = SubResource( 1 )
 shader_param/albedo = Color( 0.427451, 0.427451, 0.427451, 0.180392 )
-shader_param/specular = 0.2
-shader_param/metallic = 0.5
+shader_param/specular = 1.0
+shader_param/metallic = 0.4
 shader_param/proximity_fade_distance = 1.0
 shader_param/distance_fade_min = 0.0
 shader_param/distance_fade_max = 1.0
 shader_param/roughness = 0.0
 shader_param/point_size = 0.0
 shader_param/refraction = 0.05
-shader_param/refraction_texture_channel = Plane( 0, 0, 0, 1 )
-shader_param/normal_scale = 3.0
-shader_param/uv1_scale = Vector3( 2, 2, 1 )
+shader_param/refraction_texture_channel = Plane( 0, 0, 0, 0 )
+shader_param/normal_scale = 2.0
+shader_param/uv1_scale = Vector3( 8, 8, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/speed = 0.05
-shader_param/texture_refraction = ExtResource( 1 )
+shader_param/speed = 0.01
+shader_param/texture_refraction = ExtResource( 3 )
 shader_param/texture_normal = ExtResource( 2 )
-shader_param/texture_normal_2 = ExtResource( 3 )
+shader_param/texture_normal_2 = ExtResource( 1 )
