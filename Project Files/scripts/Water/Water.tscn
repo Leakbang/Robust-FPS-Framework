@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Water/Water.gd" type="Script" id=1]
 [ext_resource path="res://Crate.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 18, 4, 5 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 1
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.5
 
 [node name="Spatial" type="Spatial"]
 
@@ -15,24 +20,30 @@ script = ExtResource( 1 )
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 1 )
 
-[node name="Crate2" parent="Area" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 9, 0 )
+[node name="Crate3" parent="Area" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 12, 0 )
 
 [node name="Crate5" parent="Area" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 13, 0 )
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -6, 19, 0 )
 
 [node name="Crate6" parent="Area" instance=ExtResource( 2 )]
-transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -4, 17, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 23, 0 )
 
 [node name="Crate7" parent="Area" instance=ExtResource( 2 )]
-transform = Transform( 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -4, 20, 0 )
+transform = Transform( 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, -8, 24, 0 )
 
-[node name="Crate8" parent="Area" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 17, 0 )
+[node name="Crate4" parent="Area" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12, 0 )
+
+[node name="MeshInstance" parent="Area/Crate4" index="0"]
+transform = Transform( 5, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CollisionShape" parent="Area/Crate4" index="1"]
+transform = Transform( 5, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 2.38419e-07, 0, -2.38419e-07, 1, 1, 3, 12 )
-projection = 1
+fov = 90.0
 size = 20.0
 
 [node name="CSGBox" type="CSGBox" parent="."]
@@ -40,6 +51,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4, 0 )
 use_collision = true
 width = 44.0
 height = 0.6
+depth = 22.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
 
 [connection signal="body_entered" from="Area" to="Area" method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="Area" method="_on_Area_body_exited"]
+
+[editable path="Area/Crate4"]
