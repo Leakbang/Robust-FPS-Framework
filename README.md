@@ -19,3 +19,4 @@
  This contains massive chunks of code forked from [Linko-3D's FPS Controller](https://github.com/Linko-3D/First-Person-Controller-FPS) and [Btan2's Q_Move](https://github.com/Btan2/Q_Move).
  They did the hard work.  
 Water texture by [Valve](https://www.valvesoftware.com/en/)
+Draw debug tool by [Zylann](https://github.com/Zylann/godot_debug_draw)
