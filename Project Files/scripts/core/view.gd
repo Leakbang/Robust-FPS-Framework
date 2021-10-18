@@ -37,17 +37,17 @@ var v_dmg_pitch : float = 0.0
 var cl_bob : float = 0.01             # default: 0.01
 var cl_bobup : float = 0.5            # default: 0.5
 var cl_bobcycle : float = 0.8         # default: 0.8
-var ql_bob : float = 0.012             # default: 0.012
+var ql_bob : float = 0.012            # default: 0.012
 var ql_bobup : float = 0.5            # default: 0.5
 var ql_bobcycle : float = 0.6         # default: 0.6
 
 #Roll
-var rollangles : float = 3.0          # default: 15.0
+var rollangles : float = 7.0          # default: 15.0
 var rollspeed : float = 300.0         # default: 300.0
 var tiltextra : float = 2.0           # default: 2.0
 
 #View Idle
-var idlescale : float= 0.1           # default: 1.6
+var idlescale : float= 1.6            # default: 1.6
 var iyaw_cycle : float = 1.5          # default: 1.5
 var iroll_cycle : float = 1.0         # default: 1.0
 var ipitch_cycle : float = 2.0        # default: 2.0
@@ -80,13 +80,12 @@ _input
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_move = event.relative * 0.1
-		
 		mouse_rotation_x -= event.relative.y * mouse_sensitivity
 		mouse_rotation_x = clamp(mouse_rotation_x, -90, 90)
 		player.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-	
+
 	if Input.is_key_pressed(KEY_P):
-		TriggerShake(5.0)
+		trigger_shake(5.0)
 
 """
 ===============
@@ -94,53 +93,50 @@ _process
 ===============
 """
 func _physics_process(delta):
-	
-	#lab.text += str(mouse_move) + "\n"
-	
+
 	deltaTime = delta
-	
+
 	if player.is_dead:
 		camera.rotation_degrees.z = 80
 		transform.origin = Vector3(0, -1.6, 0)
 		return
-	
+
 	# Set points of origin
 	camera.rotation_degrees = Vector3(mouse_rotation_x, 0, 0)
 	transform.origin = Vector3(0, y_offset, 0)
-	
-	VelocityRoll()
-	
+
+	velocity_roll()
+
 	if player.velocity.length() <= 0.1:
 		bobtimes = [0,0,0]
 		Q_bobtime = 0.0
-		AddIdle()
-		ViewIdle()
+		add_idle()
+		view_idle()
 	else:
 		idletime = 0.0
-		AddBob()
+		add_bob()
 		if newbob:
-			ViewBobModern()
+			view_bob_modern()
 		else:
-			ViewBobClassic()
-	
-	SmoothStepUp()
-	
+			view_bob_classic()
+
+	smooth_step_up()
+
 	# Apply damage/fall kicks
 	if v_dmg_time > 0.0:
 		camera.rotation_degrees.z += v_dmg_time / kick_time * v_dmg_roll
 		camera.rotation_degrees.x += v_dmg_time / kick_time * v_dmg_pitch
 		v_dmg_time -= delta
-	
+
 	if shakecam:
-		Shake(1)
+		shake(1)
 
 """
 ===============
-SmoothStepUp
-Smooth out stair step ups
+smooth_step_up
 ===============
 """
-func SmoothStepUp():
+func smooth_step_up():
 	var current = player.global_transform.origin[1]
 	if player.state != 1 and current - oldy > 0:
 		oldy += deltaTime * 15.0
@@ -151,47 +147,48 @@ func SmoothStepUp():
 		transform.origin[1] += oldy - current
 	else:
 		oldy = current
-	pass
 
 """
 ===============
-VelocityRoll
+velocity_roll
 ===============
 """
-func VelocityRoll():
+func velocity_roll():
 	var side : float
-	
-	side = CalcRoll(player.velocity, rollangles, rollspeed) * 4
+
+	side = calc_roll(player.velocity, rollangles, rollspeed) * 4
 	camera.rotation_degrees.z += side
 
 """
 ===============
-CalcRoll
+calc_roll
+
 Roll angle left/right based on velocity
 ===============
 """
-func CalcRoll (velocity, angle, speed):
+func calc_roll (velocity : Vector3, angle : float, speed : float):
 	var s : float
 	var side : float
-	
+
 	side = velocity.dot(-get_global_transform().basis.x)
 	s = sign(side)
 	side = abs(side)
-	
+
 	if (side < speed):
 		side = side * angle / speed;
 	else:
 		side = angle;
-	
+
 	return side * s
 
 """
 ==============
-AddIdle
+add_idle
+
 Calculate idle sinewaves
 ==============
 """
-func AddIdle():
+func add_idle():
 	idletime += deltaTime
 	idleRight = idlescale * sin(idletime * ipitch_cycle) * ipitch_level
 	idleUp = idlescale * sin(idletime * iyaw_cycle) * iyaw_level
@@ -199,10 +196,10 @@ func AddIdle():
 
 """
 ===============
-ViewIdle
+view_idle
 ===============
 """
-func ViewIdle():
+func view_idle():
 	camera.rotation_degrees.x += idleUp
 	camera.rotation_degrees.y += idleRight
 	camera.rotation_degrees.z += idleForward
@@ -212,43 +209,41 @@ func ViewIdle():
 AddBob
 ===============
 """
-func AddBob():
-	bobRight = CalcBob(0.75, bob_mode, 0, bobRight)
-	bobUp = CalcBob(1.50, bob_mode, 1, bobUp)
-	bobForward = CalcBob(1.00, bob_mode, 2, bobForward)
+func add_bob():
+	bobRight = calc_bob(0.75, bob_mode, 0, bobRight)
+	bobUp = calc_bob(1.50, bob_mode, 1, bobUp)
+	bobForward = calc_bob(1.00, bob_mode, 2, bobForward)
 
 """
 ===============
-ViewBobModern
-Modern style head-bob
+view_bob_modern
 ===============
 """
-func ViewBobModern():
+func view_bob_modern():
 	camera.rotation_degrees.z += bobRight * 0.8
 	camera.rotation_degrees.y -= bobUp * 0.8
 	camera.rotation_degrees.x += bobRight * 1.2
 
 """
 ===============
-ViewBob
-Classic Quake head-bob
+view_bob_classic
 ===============
 """
-func ViewBobClassic():
-	transform.origin[1] += CalcBobClassic()
+func view_bob_classic():
+	transform.origin[1] += calc_bob_classic()
 
 """
 ===============
-CalcBobClassic
+calc_bob_classic
 ===============
 """
-func CalcBobClassic():
+func calc_bob_classic():
 	var vel : Vector3
 	var cycle : float
-	
-	if player.state != 0: 
+
+	if player.state != 0:
 		return Q_bob
-	
+
 	Q_bobtime += deltaTime
 	cycle = Q_bobtime - int(Q_bobtime / ql_bobcycle) * ql_bobcycle
 	cycle /= ql_bobcycle
@@ -256,38 +251,38 @@ func CalcBobClassic():
 		cycle = PI * cycle / ql_bobup
 	else:
 		cycle = PI + PI * (cycle - ql_bobup) / (1.0 - ql_bobup)
-	
+
 	vel = player.velocity
 	Q_bob = sqrt(vel[0] * vel[0] + vel[2] * vel[2]) * ql_bob
 	Q_bob = Q_bob * 0.3 + Q_bob * 0.7 * sin(cycle)
 	Q_bob = clamp(Q_bob, -7.0, 4.0)
-	
+
 	return Q_bob
 
 """
 ===============
-CalcBob
+calc_bob
 ===============
 """
-func CalcBob (freqmod: float, mode, bob_i: int, bob: float):
+func calc_bob (freqmod : float, mode, bob_i : int, bob : float):
 	var cycle : float
 	var vel : Vector3
-	
+
 	if player.state != 0:
 		return bob
-	
+
 	bobtimes[bob_i] += deltaTime * freqmod
 	cycle = bobtimes[bob_i] - int( bobtimes[bob_i] / cl_bobcycle ) * cl_bobcycle
 	cycle /= cl_bobcycle
-	
+
 	if cycle < cl_bobup:
 		cycle = PI * cycle / cl_bobup
 	else:
 		cycle = PI + PI * ( cycle - cl_bobup)/( 1.0 - cl_bobup)
-	
+
 	vel = player.velocity
 	bob = sqrt(vel[0] * vel[0] + vel[2] * vel[2]) * cl_bob
-	
+
 	if mode == VB_SIN:
 		bob = bob * 0.3 + bob * 0.7 * sin(cycle)
 	elif mode == VB_COS:
@@ -297,15 +292,15 @@ func CalcBob (freqmod: float, mode, bob_i: int, bob: float):
 	elif mode == VB_COS2:
 		bob = bob * 0.3 + bob * 0.7 * cos(cycle) * cos(cycle)
 	bob = clamp(bob, -7, 4)
-	
+
 	return bob
 
 """
 ==============
-TriggerShake
+trigger_shake
 ==============
 """
-func TriggerShake(time):
+func trigger_shake(time : float):
 	shakecam = true
 	shaketime = 0.0
 	shakelength = time
@@ -314,16 +309,16 @@ func TriggerShake(time):
 
 """
 ==============
-Shake
+shake
 ==============
 """
-func Shake(easing):
+func shake(easing : int):
 	var cycle = Vector3(33, 44, 36)
 	var v_level = Vector3(-1.5, 2, 1.25)
 	var s_scale : float
-	
-	shaketime += deltaTime 
-	
+
+	shaketime += deltaTime
+
 	easing = clamp(easing, 0, 2)
 	if easing == 0: # No shake easing
 		s_scale = 1.0
@@ -332,20 +327,21 @@ func Shake(easing):
 		s_scale = diff if diff <= 1.0 else 1.0
 	elif easing == 2: # Ease off scaling throughout the entire shake
 		s_scale = 1.0 - shaketime/shakelength
-	
+
 	for i in range(3):
 		camera.rotation_degrees[i] += s_scale * sin(shaketime * cycle[i]) * v_level[i]
-	
+
 
 """
 ==============
-ParseDamage
+parse_damage
+
 Trigger view kicks
 ==============
 """
-func ParseDamage(from):
+func parse_damage(from : Vector3):
 	var side : float
-	
+
 	side = from.dot(-get_global_transform().basis.z)
 	v_dmg_roll = side * kick_amount
 	side = from.dot(get_global_transform().basis.x)

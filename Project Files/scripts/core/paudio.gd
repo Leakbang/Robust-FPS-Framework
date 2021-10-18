@@ -3,7 +3,7 @@ extends Node
 """
 paudio.gd
 
-- Triggers player audio 
+- Triggers player audio
 - Plays footsteps, jumping, landing, damage etc.
 """
 
@@ -37,7 +37,7 @@ _ready
 """
 func _ready() -> void:
 	r.randomize()
-	
+
 	var dir = Directory.new()
 	if dir.open(plyr_audio_dir) == OK:
 		dir.list_dir_begin()
@@ -50,14 +50,12 @@ func _ready() -> void:
 			elif file.begins_with("land_concrete") and file.ends_with("ogg"):
 				land_dirt.append(load(plyr_audio_dir + file))
 			file = dir.get_next()
-	
-	feet_arr = feet_concrete
-	jump_arr = jump_concrete
-	land_arr = land_dirt
-	
+
+	set_ground_type("DEFAULT")
+
 	landhurt = preload("res://audio/land_hurt.ogg")
 	env.stream = preload("res://audio/windfall_1.ogg")
-	
+
 	last_position = player.global_transform.origin
 
 """
@@ -65,25 +63,25 @@ func _ready() -> void:
 _process
 ===============
 """
-func _process(_delta):
+func _process(_delta) -> void:
 	var vel = abs(player.velocity.length())
-	
-	PlayWindrush(vel)
-	
+
+	play_windrush(vel)
+
 	if player.state == 0 or player.state == 2:
-		PlayFootstep(vel)
+		play_footstep(vel)
 
 """
 ===============
-PlayWindrush
+play_windrush
 Air rush sfx while moving/falling at high speed
 ===============
 """
-func PlayWindrush(vel):
+func play_windrush(vel : int) -> void:
 	if vel > 55.0:
 		if !env.playing:
 			env.play()
-		
+
 		# Increase volume and pitch while falling
 		var fallspeed = vel - 55.0
 		env.pitch_scale = clamp(fallspeed / 150, 0.001, 1.5)
@@ -97,51 +95,49 @@ func PlayWindrush(vel):
 
 """
 ===============
-PlayFootstep
+play_footstep
 ===============
 """
-func PlayFootstep(vel):
+func play_footstep(vel : int) -> void:
 	var position : Vector3
 	var step_threshold : float
 	var halfspeed : float
 	var walk_threshold : float
 	var run_threshold : float
-	
+
 	walk_threshold = 6.25
 	run_threshold = 8.5
-	
+
 	# Get horizontal distance from move
 	position = player.global_transform.origin
 	position[1] = 0.0
 	step_distance += position.distance_to(last_position)
 	last_position = position
-	
+
 	halfspeed = player.WALKSPEED + (player.MAXSPEED - player.WALKSPEED) / 2
 	step_threshold = run_threshold if vel > halfspeed else walk_threshold
-	
+
 	if step_distance > step_threshold:
 		step_distance = 0.0
-		
+
 		# Don't play footstep if sneaking
 		if player.crouch_press and player.movespeed < player.WALKSPEED:
 			return
-		
+
 		var volume = clamp(vel / player.MAXSPEED * 1.0, 0.1, 1.0) * footstep_volume
 		feet.set_volume_db(linear2db(volume))
-		feet.stream = RandomFootstep()
+		feet.stream = random_footstep()
 		feet.play()
 
 """
 ===============
-RandomFootstep
-Picks a random footstep to play and specifically 
-avoids picking duplicate footsteps
+random_footstep
 ===============
 """
-func RandomFootstep():
+func random_footstep():
 	var length : int
 	var i : int
-	
+
 	length = feet_arr.size()
 	i = r.randi() % length
 	if feet_arr[i] == feet.stream:
@@ -151,27 +147,27 @@ func RandomFootstep():
 			i = r.randi_range(1, length-1)
 		elif i == length-1:
 			i = r.randi_range(0, length-2)
-	
+
 	return feet_arr[i]
 
 """
 ===============
-PlayJump
+play_jump
 ===============
 """
-func PlayJump() -> void:
+func play_jump() -> void:
 	jump.set_volume_db(linear2db(jump_volume))
 	jump.stream = jump_arr[r.randi_range(0,1)]
 	jump.play()
 
 """
 ===============
-PlayLand
+play_land
 ===============
 """
-func PlayLand() -> void:
+func play_land() -> void:
 	step_distance = 0.0
-	
+
 	jump.stop()
 	jump.set_volume_db(linear2db(jump_volume))
 	jump.stream = land_arr[r.randi_range(0,land_arr.size()-1)]
@@ -179,10 +175,10 @@ func PlayLand() -> void:
 
 """
 ===============
-PlayLandHurt
+play_land_hurt
 ===============
 """
-func PlayLandHurt() -> void:
+func play_land_hurt() -> void:
 	jump.stop()
 	jump.set_volume_db(linear2db(jump_volume))
 	jump.stream = landhurt
@@ -190,33 +186,69 @@ func PlayLandHurt() -> void:
 
 """
 ===============
-SetGroundType
+set_ground_type
+
 Change footstep sfx based on ground type
 ===============
 """
-func SetGroundType(ground) -> void:
+func set_ground_type(ground : String) -> void:
 	if ground_type != ground:
 		match(ground):
 			"GRASS":
+				#feet_arr = feet_grass
+				#jump_arr = jump_grass
+				#land_arr = land_grass
 				pass
-	#				feet_arr = feet_grass
-	#				jump_arr = jump_grass
 			"TILES":
+				#feet_arr = feet_tiles
+				#jump_arr = jump_tiles
+				#land_arr = land_tiles
 				pass
-	#				feet_arr = feet_tiles
-	#				jump_arr = jump_tiles
+			"PUDDLE":
+				#feet_arr = feet_puddle
+				#jump_arr = jump_puddle
+				#land_arr = land_puddle
+				pass
+			"WATER":
+				#feet_arr = feet_water
+				#jump_arr = jump_water
+				#land_arr = land_water
+				pass
+			"DIRT":
+				#feet_arr = feet_dirt
+				#jump_arr = jump_dirt
+				#land_arr = land_dirt
+				pass
+			"METAL":
+				#feet_arr = feet_metal
+				#jump_arr = jump_metal
+				#land_arr = land_metal
+				pass
+			"AIRVENT":
+				#feet_arr = feet_airvent
+				#jump_arr = jump_airvent
+				#land_arr = land_airvent
+				pass
+			"CARPET":
+				#feet_arr = feet_carpet
+				#jump_arr = jump_carpet
+				#land_arr = land_carpet
+				pass
 			"CONCRETE":
 				feet_arr = feet_concrete
 				jump_arr = jump_concrete
+				land_arr = land_dirt
 			"DEFAULT":
 				feet_arr = feet_concrete
 				jump_arr = jump_concrete
+				land_arr = land_dirt
 			_:
-				feet_arr = feet_concrete
-				jump_arr = jump_concrete
+				#feet_arr = feet_concrete
+				#jump_arr = jump_concrete
 				pass
-		
+
 		ground_type = ground
+
 
 ##################################################################################
 # Works well but causes harsh audio pop/crack sound when first played
