@@ -31,7 +31,7 @@ func _physics_process(delta):
 		object_grabbed.axis_lock_angular_y = true
 		object_grabbed.axis_lock_angular_z = true
 
-		if vector.length() >= 3:
+		if vector.length() >= 5:
 			object_grabbed.set_mode(0)
 			release()
 
