@@ -1,5 +1,7 @@
  # Robust FPS Framework
  An optimized, robust FPS framework.
+ 
+ > **Note:** The development will take place on the alternative branch until the physics based player movement is implemented.
 
  ## Idea
  The idea behind this project is to make an optimized and robust FPS framework that can be used in a wide range of games.
