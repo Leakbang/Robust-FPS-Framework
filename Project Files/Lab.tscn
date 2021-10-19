@@ -22,7 +22,7 @@ ssao_enabled = true
 [node name="World" type="Spatial"]
 
 [node name="Elevator" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 4, -10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -1, -10 )
 
 [node name="Geometry" type="Spatial" parent="."]
 
@@ -42,6 +42,14 @@ height = 4.0
 depth = 18.0
 material = ExtResource( 1 )
 
+[node name="CSGBox4" type="CSGBox" parent="Geometry/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3, -8 )
+operation = 2
+width = 6.0
+height = 4.0
+depth = 10.0
+material = ExtResource( 1 )
+
 [node name="CSGBox2" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09254, -57.4999 )
 use_collision = true
@@ -55,6 +63,86 @@ use_collision = true
 width = 4.0
 height = 6.0
 depth = 1.0
+material = ExtResource( 1 )
+
+[node name="CSGBox4" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3, -15 )
+use_collision = true
+width = 4.0
+height = 8.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="CSGBox5" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 4.1, -17.3 )
+use_collision = true
+width = 4.0
+height = 4.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox6" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3.6, -17.9 )
+use_collision = true
+width = 4.0
+height = 4.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox7" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3, -18.5 )
+use_collision = true
+width = 4.0
+height = 4.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox8" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, -19.1 )
+use_collision = true
+width = 4.0
+height = 4.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox9" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1.9, -19.7 )
+use_collision = true
+width = 4.0
+height = 4.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox10" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 1.9, -15 )
+use_collision = true
+width = 4.0
+height = 2.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox11" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 1.4, -14.4 )
+use_collision = true
+width = 4.0
+height = 2.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox12" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 0.9, -13.8 )
+use_collision = true
+width = 4.0
+height = 2.4
+depth = 0.6
+material = ExtResource( 1 )
+
+[node name="CSGBox13" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 0.4, -13.2 )
+use_collision = true
+width = 4.0
+height = 2.4
+depth = 0.6
 material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
