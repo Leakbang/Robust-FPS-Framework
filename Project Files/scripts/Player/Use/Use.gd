@@ -28,7 +28,7 @@ func _physics_process(delta):
 	elif get_collider() and Target.owner.is_in_group("Terminal"):
 		UI.set("visible", false)
 		Target.owner.is_mouse_inside = true
-		var v_c = get_collision_point ( )
+		var v_c = get_collision_point ()
 		Target.owner.virutal_cursor = v_c
 	elif not object_grabbed and $UseTimer.is_stopped() and get_collider() is RigidBody and get_collider().mass <= mass_limit:
 		prompt("Pickup")
