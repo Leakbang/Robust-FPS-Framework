@@ -14,14 +14,8 @@ func _ready():
 		$OmniLight.light_energy = 0
 		$Bulb.mesh.surface_set_material(0, off_material)
 
-func activate():
-	if is_on:
-		$OmniLight.light_energy = 0
-		$Bulb.mesh.surface_set_material(0, off_material)
-		is_on = false
-	else:
-		$OmniLight.light_energy = 1
-		$Bulb.mesh.surface_set_material(0, on_material)
-		is_on = true
+func activate(value):
+	$OmniLight.light_energy = value
+#		$Bulb.mesh.surface_set_material(0, off_material)
 	
 

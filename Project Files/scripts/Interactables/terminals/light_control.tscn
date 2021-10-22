@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Misc/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://materials/textures/left_ptr.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Interactables/terminals/light_control.gd" type="Script" id=3]
+[ext_resource path="res://materials/orange.tres" type="Material" id=4]
+[ext_resource path="res://materials/dark_grey.tres" type="Material" id=5]
+
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 5 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.5, 0.5, 0.05 )
+
+[node name="light_terminal" type="Spatial" groups=[
+"Terminal",
+]]
+script = ExtResource( 3 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1000, 1000 )
+msaa = 1
+fxaa = true
+hdr = false
+usage = 0
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="GUI" type="Control" parent="Viewport"]
+margin_right = 1000.0
+margin_bottom = 1000.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Viewport/GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Viewport/GUI/Panel"]
+margin_left = 54.0
+margin_top = 64.0
+margin_right = 258.0
+margin_bottom = 125.0
+rect_scale = Vector2( 4, 4 )
+text = "Light Control"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Viewport/GUI/Panel"]
+margin_left = 173.0
+margin_top = 403.0
+margin_right = 331.0
+margin_bottom = 459.0
+rect_scale = Vector2( 4, 4 )
+text = "Toggle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Viewport/GUI/Panel"]
+margin_left = 61.7136
+margin_top = 729.935
+margin_right = 171.714
+margin_bottom = 754.935
+rect_scale = Vector2( 8, 8 )
+max_value = 5.0
+step = 0.1
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Viewport/GUI/Panel"]
+margin_left = 686.815
+margin_top = 145.863
+margin_right = 782.815
+margin_bottom = 241.863
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quad" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+
+[node name="Area" type="Area" parent="Quad"]
+input_capture_on_drag = true
+
+[node name="CollisionShape" type="CollisionShape" parent="Quad/Area"]
+shape = SubResource( 4 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+width = 1.05
+height = 1.05
+depth = 0.05
+material = ExtResource( 5 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGBox"]
+operation = 2
+width = 1.0
+height = 1.0
+depth = 0.05
+material = ExtResource( 4 )
+
+[connection signal="pressed" from="Viewport/GUI/Panel/Button" to="." method="_on_Button_pressed"]
+[connection signal="value_changed" from="Viewport/GUI/Panel/HSlider" to="." method="_on_HSlider_value_changed"]

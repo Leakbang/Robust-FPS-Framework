@@ -11,8 +11,8 @@ onready var collider : CollisionShape = $CollisionShape
 onready var head : Spatial = $Head
 onready var sfx : Node = $Audio
 
-const MAXSPEED : float = 32.0        # default: 32.0
-const WALKSPEED : float = 16.0       # default: 16.0
+const MAXSPEED : float = 22.0        # default: 32.0
+const WALKSPEED : float = 11.0       # default: 16.0
 const STOPSPEED : float = 10.0       # default: 10.0
 const GRAVITY : float = 80.0         # default: 80.0
 const ACCELERATE : float = 10.0      # default: 10.0

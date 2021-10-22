@@ -31,6 +31,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4, -0.75 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03516, -0.360807, 0 )
 
 [node name="Use" parent="Head/Camera" instance=ExtResource( 9 )]
+ui_node = NodePath("../../../UI")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )

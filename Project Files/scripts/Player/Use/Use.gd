@@ -1,5 +1,9 @@
 extends RayCast
 
+export (NodePath) var ui_node
+
+var UI
+
 var mass_limit = 50
 var throw_force = 20
 
@@ -13,19 +17,24 @@ var text_visible = false
 
 func _ready():
 	$UseText.modulate = Color(0.98, 0.71, 0.08, 0)
+	UI = get_node(ui_node)
+	UI.set("visible", false)
 
 func _physics_process(delta):
 	Target = get_collider();
 	if get_collider() and $UseTimer.is_stopped() and Target.is_in_group("Useable"):
 		prompt("Use")
-	elif get_collider() and $UseTimer.is_stopped() and Target.owner.is_in_group("Terminal"):
-		prompt("Terminal")
+		UI.set("visible", false)
+	elif get_collider() and Target.owner.is_in_group("Terminal"):
+		UI.set("visible", false)
 		Target.owner.is_mouse_inside = true
 		var v_c = get_collision_point ( )
 		Target.owner.virutal_cursor = v_c
 	elif not object_grabbed and $UseTimer.is_stopped() and get_collider() is RigidBody and get_collider().mass <= mass_limit:
 		prompt("Pickup")
+		UI.set("visible", false)
 	else:
+		UI.set("visible", true)
 		unprompt()
 		
 	# Drop object if it goes too far
