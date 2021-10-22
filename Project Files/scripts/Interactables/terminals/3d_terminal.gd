@@ -11,28 +11,21 @@ var last_mouse_pos3D = null
 # The last processed input touch/mouse event. To calculate relative movement.
 var last_mouse_pos2D = null
 
+var virutal_cursor = null
+
 onready var node_viewport = $Viewport
 onready var node_quad = $Quad
 onready var node_area = $Quad/Area
 
 func _ready():
-	node_area.connect("mouse_entered", self, "_mouse_entered_area")
-
-	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
-	if node_quad.get_surface_material(0).params_billboard_mode == 0:
-		set_process(false)
+	pass
 
 
 func _process(_delta):
-	# NOTE: Remove this function if you don't plan on using billboard settings.
-	rotate_area_to_billboard()
+	pass
 
 
-func _mouse_entered_area():
-	is_mouse_inside = true
-
-
-func _unhandled_input(event):
+func _input(event):
 	# Check if the event is a non-mouse/non-touch event
 	var is_mouse_event = false
 	for mouse_event in [InputEventMouseButton, InputEventMouseMotion, InputEventScreenDrag, InputEventScreenTouch]:
@@ -59,11 +52,10 @@ func handle_mouse(event):
 		is_mouse_held = event.pressed
 
 	# Find mouse position in Area
-	var mouse_pos3D = find_mouse(event.global_position)
+	var mouse_pos3D = find_mouse()
 
 	# Check if the mouse is outside of bounds, use last position to avoid errors
 	# NOTE: mouse_exited signal was unrealiable in this situation
-	is_mouse_inside = mouse_pos3D != null
 	if is_mouse_inside:
 		# Convert click_pos from world coordinate space to a coordinate space relative to the Area node.
 		# NOTE: affine_inverse accounts for the Area node's scale, rotation, and translation in the scene!
@@ -97,64 +89,28 @@ func handle_mouse(event):
 	event.global_position = mouse_pos2D
 
 	# If the event is a mouse motion event...
-	if event is InputEventMouseMotion:
-		# If there is not a stored previous position, then we'll assume there is no relative motion.
-		if last_mouse_pos2D == null:
-			event.relative = Vector2(0, 0)
-		# If there is a stored previous position, then we'll calculate the relative position by subtracting
-		# the previous position from the new position. This will give us the distance the event traveled from prev_pos
-		else:
-			event.relative = mouse_pos2D - last_mouse_pos2D
-	# Update last_mouse_pos2D with the position we just calculated.
+#	if event is InputEventMouseMotion:
+#		# If there is not a stored previous position, then we'll assume there is no relative motion.
+#		if last_mouse_pos2D == null:
+#			event.relative = Vector2(0, 0)
+#		# If there is a stored previous position, then we'll calculate the relative position by subtracting
+#		# the previous position from the new position. This will give us the distance the event traveled from prev_pos
+#		else:
+#			event.relative = mouse_pos2D - last_mouse_pos2D
+#	# Update last_mouse_pos2D with the position we just calculated.
 	last_mouse_pos2D = mouse_pos2D
 	$Viewport/GUI/Panel/TextureRect.rect_position = last_mouse_pos2D 
 	
 	node_viewport.input(event)
 
 
-func find_mouse(global_position):
-	var camera = get_viewport().get_camera()
+func find_mouse():
 
-	var from = camera.project_ray_origin(global_position)
-	var dist = find_further_distance_to(camera.transform.origin)
-	var to = from + camera.project_ray_normal(global_position) * dist
+	var result = virutal_cursor
 
-	var result = get_world().direct_space_state.intersect_ray(from, to, [], node_area.collision_layer,false,true) #for 3.1 changes
+	#var result = get_world().direct_space_state.intersect_ray(from, to, [], node_area.collision_layer,false,true) #for 3.1 changes
 
-	if result.size() > 0:
-		return result.position
+	if result:
+		return result
 	else:
 		return null
-
-
-func find_further_distance_to(origin):
-	var edges = []
-	edges.append(node_area.to_global(Vector3(quad_mesh_size.x / 2, quad_mesh_size.y / 2, 0)))
-	edges.append(node_area.to_global(Vector3(quad_mesh_size.x / 2, -quad_mesh_size.y / 2, 0)))
-	edges.append(node_area.to_global(Vector3(-quad_mesh_size.x / 2, quad_mesh_size.y / 2, 0)))
-	edges.append(node_area.to_global(Vector3(-quad_mesh_size.x / 2, -quad_mesh_size.y / 2, 0)))
-
-	var far_dist = 0
-	var temp_dist
-	for edge in edges:
-		temp_dist = origin.distance_to(edge)
-		if temp_dist > far_dist:
-			far_dist = temp_dist
-
-	return far_dist
-
-
-func rotate_area_to_billboard():
-	var billboard_mode = node_quad.get_surface_material(0).params_billboard_mode
-
-	if billboard_mode > 0:
-		var camera = get_viewport().get_camera()
-		var look = camera.to_global(Vector3(0, 0, -100)) - camera.global_transform.origin
-		look = node_area.translation + look
-
-		if billboard_mode == 2:
-			look = Vector3(look.x, 0, look.z)
-
-		node_area.look_at(look, Vector3.UP)
-
-		node_area.rotate_object_local(Vector3.BACK, camera.rotation.z)

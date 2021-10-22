@@ -18,7 +18,9 @@ albedo_texture = SubResource( 2 )
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 1.5, 1, 0.05 )
 
-[node name="3D Terminal" type="Spatial"]
+[node name="3D Terminal" type="Spatial" groups=[
+"Terminal",
+]]
 script = ExtResource( 1 )
 
 [node name="Viewport" type="Viewport" parent="."]
@@ -60,16 +62,6 @@ margin_right = 166.784
 margin_bottom = 675.737
 rect_scale = Vector2( 4, 4 )
 text = "A button!"
-
-[node name="TextEdit" type="LineEdit" parent="Viewport/GUI/Panel"]
-margin_left = 46.0
-margin_top = 471.0
-margin_right = 278.0
-margin_bottom = 495.0
-rect_scale = Vector2( 4, 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HSlider" type="HSlider" parent="Viewport/GUI/Panel"]
 margin_left = 49.0
@@ -143,7 +135,6 @@ material/0 = SubResource( 3 )
 
 [node name="Area" type="Area" parent="Quad"]
 input_capture_on_drag = true
-collision_layer = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Quad/Area"]
 shape = SubResource( 4 )

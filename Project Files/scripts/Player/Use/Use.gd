@@ -18,6 +18,11 @@ func _physics_process(delta):
 	Target = get_collider();
 	if get_collider() and $UseTimer.is_stopped() and Target.is_in_group("Useable"):
 		prompt("Use")
+	elif get_collider() and $UseTimer.is_stopped() and Target.owner.is_in_group("Terminal"):
+		prompt("Terminal")
+		Target.owner.is_mouse_inside = true
+		var v_c = get_collision_point ( )
+		Target.owner.virutal_cursor = v_c
 	elif not object_grabbed and $UseTimer.is_stopped() and get_collider() is RigidBody and get_collider().mass <= mass_limit:
 		prompt("Pickup")
 	else:

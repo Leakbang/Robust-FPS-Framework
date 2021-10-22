@@ -6,6 +6,7 @@
 [node name="Use" type="RayCast"]
 enabled = true
 cast_to = Vector3( 0, 0, -6 )
+collide_with_areas = true
 script = ExtResource( 2 )
 
 [node name="UseRange" type="Position3D" parent="."]
