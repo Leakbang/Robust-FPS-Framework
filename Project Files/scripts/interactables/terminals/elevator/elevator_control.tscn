@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Misc/Theme.tres" type="Theme" id=1]
-[ext_resource path="res://materials/textures/left_ptr.png" type="Texture" id=2]
-[ext_resource path="res://scripts/Interactables/terminals/elevator_control.gd" type="Script" id=3]
-[ext_resource path="res://materials/orange.tres" type="Material" id=4]
-[ext_resource path="res://materials/dark_grey.tres" type="Material" id=5]
+[ext_resource path="res://materials/dark_grey.tres" type="Material" id=2]
+[ext_resource path="res://materials/orange.tres" type="Material" id=3]
+[ext_resource path="res://scripts/interactables/terminals/elevator/elevator_control.gd" type="Script" id=4]
+[ext_resource path="res://materials/textures/left_ptr.png" type="Texture" id=5]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 0.5, 1 )
@@ -24,7 +24,8 @@ extents = Vector3( 0.25, 0.5, 0.05 )
 [node name="elevator_terminal" type="Spatial" groups=[
 "Terminal",
 ]]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
+cursor_sprite = NodePath("Viewport/GUI/Panel/Cursor")
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 500, 1000 )
@@ -89,13 +90,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Viewport/GUI/Panel"]
+[node name="Cursor" type="TextureRect" parent="Viewport/GUI/Panel"]
 margin_left = 283.615
 margin_top = 791.935
 margin_right = 379.615
 margin_bottom = 887.935
 mouse_filter = 2
-texture = ExtResource( 2 )
+texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -114,14 +115,14 @@ shape = SubResource( 4 )
 width = 0.8
 height = 1.05
 depth = 0.05
-material = ExtResource( 4 )
+material = ExtResource( 3 )
 
 [node name="CSGBox" type="CSGBox" parent="CSGBox"]
 operation = 2
-width = 0.492802
+width = 0.5
 height = 1.0
 depth = 0.05
-material = ExtResource( 5 )
+material = ExtResource( 2 )
 
-[connection signal="pressed" from="Viewport/GUI/Panel/Up" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Viewport/GUI/Panel/Up" to="." method="_on_Up_pressed"]
 [connection signal="pressed" from="Viewport/GUI/Panel/Down" to="." method="_on_Button_pressed"]

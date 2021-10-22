@@ -2,7 +2,7 @@
 
 [ext_resource path="res://materials/orange.tres" type="Material" id=1]
 [ext_resource path="res://materials/light_on.tres" type="Material" id=2]
-[ext_resource path="res://scripts/Interactables/Light.gd" type="Script" id=3]
+[ext_resource path="res://scripts/interactables/Light.gd" type="Script" id=3]
 [ext_resource path="res://materials/light_off.tres" type="Material" id=4]
 
 [sub_resource type="CubeMesh" id=1]
