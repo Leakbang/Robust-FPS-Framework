@@ -69,6 +69,7 @@ crouch={
 
 [rendering]
 
+quality/filters/msaa=3
 quality/filters/use_fxaa=true
 quality/filters/use_debanding=true
 environment/default_environment="res://Misc/default_env.tres"
