@@ -262,7 +262,7 @@ depth = 0.6
 material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -18, 3.4995, 12 )
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 5, 7.4995, -28 )
 
 [node name="Crate" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.72361, 2, -4.73561 )
@@ -300,5 +300,5 @@ Target = NodePath("../Light")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1, 3.8, -9.46629 )
 Target = NodePath("../Elevator")
 
-[node name="elevator_terminal2" parent="." instance=ExtResource( 12 )]
+[node name="keypad" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, -38.4864 )

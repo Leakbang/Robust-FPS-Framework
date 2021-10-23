@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
 
 [node name="hand_icon" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.294118 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -33,6 +34,7 @@ __meta__ = {
 one_shot = true
 
 [node name="crosshair" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0.294118 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
