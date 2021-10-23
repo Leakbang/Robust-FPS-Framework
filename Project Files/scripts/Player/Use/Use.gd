@@ -1,8 +1,7 @@
 extends RayCast
 
-export (NodePath) var ui_node
-
-var UI
+onready var UI = $"crosshair"
+onready var use_icon = $"hand_icon"
 
 var mass_limit = 50
 var throw_force = 20
@@ -16,14 +15,13 @@ var can_use = true
 var text_visible = false
 
 func _ready():
-	$UseText.modulate = Color(0.98, 0.71, 0.08, 0)
-	UI = get_node(ui_node)
+	use_icon.set("visible", false)
 	UI.set("visible", false)
 
 func _physics_process(delta):
 	Target = get_collider();
 	if get_collider() and $UseTimer.is_stopped() and Target.is_in_group("Useable"):
-		prompt("Use")
+		prompt()
 		UI.set("visible", false)
 	elif get_collider() and Target.owner.is_in_group("Terminal"):
 		UI.set("visible", false)
@@ -31,7 +29,7 @@ func _physics_process(delta):
 		var v_c = get_collision_point ()
 		Target.owner.virutal_cursor = v_c
 	elif not object_grabbed and $UseTimer.is_stopped() and get_collider() is RigidBody and get_collider().mass <= mass_limit:
-		prompt("Pickup")
+		prompt()
 		UI.set("visible", false)
 	else:
 		UI.set("visible", true)
@@ -78,20 +76,16 @@ func release():
 	object_grabbed = null
 	$UseTimer.start()
 		
-func prompt(text):
+func prompt():
 	if not text_visible:
-		$UseText.text = text
 		text_visible = true
 		var animation_speed = 0.25
-		$UseTween.interpolate_property($UseText, "margin_top", 90, 80, animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-		$UseTween.interpolate_property($UseText, "modulate", Color(0.98, 0.71, 0.08, 0), Color(0.98, 0.71, 0.08, 1), animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		use_icon.set("visible", true)
 		$UseTween.start()
 
 func unprompt():
 	if text_visible:
 		text_visible = false
 		var animation_speed = 0.25
-		$UseTween.interpolate_property($UseText, "margin_top", 80, 90, animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-		$UseTween.interpolate_property($UseText, "modulate", Color(0.98, 0.71, 0.08, 1), Color(0.98, 0.71, 0.08, 0), animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-		$UseTween.start()
+		use_icon.set("visible", false)
 		$UseTimer.start()
