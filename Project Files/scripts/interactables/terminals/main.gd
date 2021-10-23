@@ -29,7 +29,7 @@ func _input(event):
 			is_mouse_event = true
 			break
 			
-	if is_mouse_event and (is_mouse_inside or is_mouse_held):
+	if is_mouse_event and is_mouse_inside:
 		handle_mouse(event)
 	elif not is_mouse_event:
 		node_viewport.input(event)

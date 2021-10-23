@@ -6,12 +6,11 @@ onready var use_icon = $"hand_icon"
 var mass_limit = 50
 var throw_force = 20
 
+var last_used_item
+
 var object_grabbed = null
-
 var Target = null
-
 var can_use = true
-
 var text_visible = false
 
 func _ready():
@@ -26,12 +25,15 @@ func _physics_process(delta):
 	elif get_collider() and Target.owner.is_in_group("Terminal"):
 		UI.set("visible", false)
 		Target.owner.is_mouse_inside = true
+		last_used_item = Target.owner
 		var v_c = get_collision_point ()
 		Target.owner.virutal_cursor = v_c
 	elif not object_grabbed and $UseTimer.is_stopped() and get_collider() is RigidBody and get_collider().mass <= mass_limit:
 		prompt()
 		UI.set("visible", false)
 	else:
+		if last_used_item:
+			last_used_item.is_mouse_inside = false
 		UI.set("visible", true)
 		unprompt()
 		
