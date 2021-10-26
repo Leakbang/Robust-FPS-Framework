@@ -50,7 +50,7 @@ func _physics_process(delta):
 			release()
 
 	# On key press
-	if Input.is_key_pressed(KEY_E) or Input.is_joy_button_pressed(0, JOY_XBOX_Y):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if can_use:
 			can_use = false
 			if get_collider() and $UseTimer.is_stopped() and Target.is_in_group("Useable"):
@@ -66,7 +66,7 @@ func _physics_process(delta):
 	else:
 		can_use = true
 
-		if Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.get_joy_axis(0, 7) >= 0.6:
+		if Input.is_mouse_button_pressed(BUTTON_RIGHT):
 			if object_grabbed:
 				object_grabbed.linear_velocity = global_transform.basis.z * -throw_force
 				release()
