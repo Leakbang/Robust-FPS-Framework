@@ -11,9 +11,9 @@ onready var collider : CollisionShape = $CollisionShape
 onready var head : Spatial = $Head
 onready var sfx : Node = $Audio
 
-const MAXSPEED : float = 22.0        # default: 32.0
-const WALKSPEED : float = 11.0       # default: 16.0
-const STOPSPEED : float = 10.0       # default: 10.0
+const MAXSPEED : float = 32.0        # default: 32.0
+const WALKSPEED : float = 8.0       # default: 16.0
+const STOPSPEED : float = 4.0       # default: 10.0
 const GRAVITY : float = 80.0         # default: 80.0
 const ACCELERATE : float = 10.0      # default: 10.0
 const AIRACCELERATE : float = 0.25   # default: 0.7
@@ -36,6 +36,7 @@ var is_dead : bool = false
 var jump_press : bool = false
 var crouch_press : bool = false
 var ground_plane : bool = false
+var toggle_walk : bool = false
 var prev_y : float = 0.0
 var velocity : Vector3 = Vector3.ZERO
 
@@ -48,7 +49,12 @@ _input
 ===============
 """
 func _input(_event):
-
+	if Input.is_key_pressed(KEY_CAPSLOCK):
+		if toggle_walk:
+			toggle_walk = false
+		else:
+			toggle_walk = true
+	
 	if Input.is_key_pressed(KEY_K):
 		is_dead = true if !is_dead else false
 
@@ -62,7 +68,7 @@ func _input(_event):
 	fmove = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
 	smove = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 
-	movespeed = WALKSPEED if Input.is_action_pressed("shift") else MAXSPEED
+	movespeed = WALKSPEED if Input.is_action_pressed("shift") or toggle_walk else MAXSPEED
 
 	if Input.is_action_just_pressed("jump") and !jump_press:
 		jump_press = true
@@ -110,7 +116,12 @@ crouch
 """
 func crouch():
 	var crouch_speed = 20.0 * deltaTime
-
+	if collider.shape.height <= (PLAYER_HEIGHT - 0.1):
+		movespeed = WALKSPEED
+#	if collider.shape.height >= (PLAYER_HEIGHT - 0.1):
+#		movespeed = MAXSPEED
+#	else:
+#		movespeed = WALKSPEED
 	if crouch_press:
 		# snap crouch height while falling
 		if state == FALLING:
