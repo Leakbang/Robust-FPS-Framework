@@ -76,7 +76,7 @@ void fragment() {
 
 [resource]
 shader = SubResource( 1 )
-shader_param/albedo = Color( 0.427451, 0.427451, 0.427451, 0.180392 )
+shader_param/albedo = Color( 0.427451, 0.427451, 0.427451, 0.584314 )
 shader_param/specular = 1.0
 shader_param/metallic = 1.0
 shader_param/proximity_fade_distance = 1.0
@@ -84,8 +84,8 @@ shader_param/distance_fade_min = 0.0
 shader_param/distance_fade_max = 1.0
 shader_param/roughness = 0.0
 shader_param/point_size = 0.0
-shader_param/refraction = 0.05
-shader_param/refraction_texture_channel = Plane( 0, 0, 0, 0 )
+shader_param/refraction = 0.1
+shader_param/refraction_texture_channel = Plane( 0.01, 0.01, 0, 0 )
 shader_param/normal_scale = 2.0
 shader_param/uv1_scale = Vector3( 8, 8, 1 )
 shader_param/uv1_offset = Vector3( 2, 2, 0 )
