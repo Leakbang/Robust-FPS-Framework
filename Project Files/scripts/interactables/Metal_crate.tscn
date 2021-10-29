@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://materials/metal.tres" type="Material" id=1]
+[ext_resource path="res://scripts/interactables/breakable.gd" type="Script" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -11,6 +12,10 @@
 "Metal",
 ]]
 mass = 4.08163
+contacts_reported = 2
+contact_monitor = true
+can_sleep = false
+script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
