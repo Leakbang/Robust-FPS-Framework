@@ -15,5 +15,7 @@ func _integrate_forces(state):
 			var impulse = state.get_contact_impulse(i) * state.get_contact_local_normal(i)
 			total_force += impulse
 			
+			$Label.text = String(total_force)
+			
 			if total_force.x > threshold or total_force.y > threshold or total_force.z > threshold:
 				print("Broken")

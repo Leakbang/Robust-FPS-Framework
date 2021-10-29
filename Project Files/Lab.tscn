@@ -267,18 +267,19 @@ depth = 0.6
 material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -8, 5.8, -25 )
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -5, 5.8, 6 )
 
 [node name="Crate" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.40001, 2, -1.41201 )
+mass = 10.2041
 
 [node name="Crate3" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 10, 2, -1.41201 )
-mass = 1.02041
+mass = 10.2041
 
 [node name="Crate2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.44721, 2, -1.41201 )
-mass = 20.4082
+mass = 10.2041
 
 [node name="Lighting" type="Spatial" parent="."]
 
@@ -293,7 +294,7 @@ environment = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -4.2, -7 )
 
 [node name="metal_crate" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 6, -31 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 6, 0 )
 can_sleep = true
 
 [node name="Light" parent="." instance=ExtResource( 9 )]
