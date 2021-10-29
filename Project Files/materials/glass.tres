@@ -1,0 +1,22 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+width = 256
+height = 256
+seamless = true
+noise = SubResource( 1 )
+
+[resource]
+flags_transparent = true
+albedo_color = Color( 0.396078, 0.396078, 0.396078, 0.156863 )
+roughness = 0.1
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = SubResource( 2 )
+anisotropy_enabled = true
+anisotropy = 0.3
+refraction_enabled = true
+refraction_scale = 0.01
+refraction_texture_channel = 0

@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/warehouse.map-5ab3308316cd3861c53fb40bb881f5d5.tres"
+
+[deps]
+
+source_file="res://maps/warehouse.map"
+dest_files=[ "res://.import/warehouse.map-5ab3308316cd3861c53fb40bb881f5d5.tres" ]
+
+[params]
+
