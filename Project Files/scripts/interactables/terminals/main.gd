@@ -28,11 +28,13 @@ func _input(event):
 		if event is mouse_event:
 			is_mouse_event = true
 			break
-			
-	if is_mouse_event and is_mouse_inside:
-		handle_mouse(event)
-	elif not is_mouse_event:
-		node_viewport.input(event)
+	if is_mouse_inside:
+		if is_mouse_event:
+			handle_mouse(event)
+		elif not is_mouse_event:
+			if (Input.is_key_pressed(KEY_1)):
+				print("wow")
+			node_viewport.input(event)
 
 
 func handle_mouse(event):

@@ -72,7 +72,7 @@ func _enter_code(code):
 	
 func _submit_code():
 	if entered_code == accepted_code:
-		print("Yay!")
+		open()
 		$AnimationPlayer.play("Success")
 	else:
-		print("Nay")
+		pass
