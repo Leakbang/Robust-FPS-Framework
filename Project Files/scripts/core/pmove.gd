@@ -11,7 +11,7 @@ onready var collider : CollisionShape = $CollisionShape
 onready var head : Spatial = $Head
 onready var sfx : Node = $Audio
 
-const MAXSPEED : float = 32.0        # default: 32.0
+const MAXSPEED : float = 12.0        # default: 32.0
 const WALKSPEED : float = 8.0       # default: 16.0
 const STOPSPEED : float = 4.0       # default: 10.0
 const GRAVITY : float = 80.0         # default: 80.0
@@ -40,6 +40,8 @@ var toggle_walk : bool = false
 var prev_y : float = 0.0
 var velocity : Vector3 = Vector3.ZERO
 
+var walking_modifier = 1
+
 enum {GROUNDED, FALLING, LADDER, SWIMMING, NOCLIP}
 var state = GROUNDED
 
@@ -49,6 +51,14 @@ _input
 ===============
 """
 func _input(_event):
+	if Input.is_mouse_button_pressed(BUTTON_WHEEL_UP):
+		if walking_modifier < 1:
+			walking_modifier += 0.2
+		print (walking_modifier)
+	if Input.is_mouse_button_pressed(BUTTON_WHEEL_DOWN):
+		if walking_modifier > 0.4:
+			walking_modifier -= 0.2
+		print (walking_modifier)
 	if Input.is_key_pressed(KEY_CAPSLOCK):
 		if toggle_walk:
 			toggle_walk = false
