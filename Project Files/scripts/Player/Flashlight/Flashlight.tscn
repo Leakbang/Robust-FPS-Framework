@@ -5,7 +5,6 @@
 [ext_resource path="res://scripts/Player/Flashlight/Sounds/light_off.wav" type="AudioStream" id=3]
 
 [node name="Flashlight" type="SpotLight"]
-light_energy = 3.0
 shadow_enabled = true
 spot_range = 90.0
 spot_attenuation = 0.5
