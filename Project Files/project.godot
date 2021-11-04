@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody",
+"class": "Breakable",
+"language": "GDScript",
+"path": "res://scripts/interactables/breakable.gd"
+}, {
 "base": "LiquidLayer",
 "class": "LavaLayer",
 "language": "GDScript",
@@ -170,6 +175,7 @@ _global_script_classes=[ {
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
 } ]
 _global_script_class_icons={
+"Breakable": "",
 "LavaLayer": "",
 "LiquidLayer": "",
 "PhysicsBall": "",
