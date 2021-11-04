@@ -10,6 +10,9 @@ size = Vector3( 10, 5, 0.4 )
 extents = Vector3( 5, 2.5, 0.2 )
 
 [node name="moving_door" type="RigidBody"]
+contacts_reported = 2
+contact_monitor = true
+can_sleep = false
 axis_lock_linear_y = true
 axis_lock_linear_z = true
 axis_lock_angular_x = true
