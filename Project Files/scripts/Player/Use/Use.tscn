@@ -9,8 +9,13 @@ cast_to = Vector3( 0, 0, -3 )
 collide_with_areas = true
 script = ExtResource( 2 )
 
-[node name="UseRange" type="Position3D" parent="."]
+[node name="use_pos" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
+
+[node name="StaticBody" type="StaticBody" parent="use_pos"]
+
+[node name="Joint" type="Generic6DOFJoint" parent="use_pos"]
+nodes/node_a = NodePath("../StaticBody")
 
 [node name="hand_icon" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.294118 )
@@ -28,10 +33,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UseTween" type="Tween" parent="."]
-
-[node name="UseTimer" type="Timer" parent="."]
+[node name="use_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="tween" type="Tween" parent="."]
+playback_process_mode = 0
 
 [node name="crosshair" type="Control" parent="."]
 modulate = Color( 1, 1, 1, 0.294118 )
