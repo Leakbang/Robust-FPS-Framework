@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://materials/dark_grey.tres" type="Material" id=1]
 [ext_resource path="res://scripts/Player/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://scripts/interactables/terminals/passcode/passcode_control.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scripts/interactables/moving_door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/interactables/button.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scripts/interactables/Can.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scripts/interactables/basket.tscn" type="PackedScene" id=16]
 
 [sub_resource type="PanoramaSky" id=1]
 radiance_size = 4
@@ -40,6 +42,7 @@ linear_damp = 1.0
 [node name="CSGBox" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
 use_collision = true
+collision_layer = 5
 width = 62.6278
 height = 10.0
 depth = 84.309
@@ -64,6 +67,7 @@ material = ExtResource( 1 )
 [node name="CSGBox2" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09254, -57.4999 )
 use_collision = true
+collision_layer = 5
 width = 62.6278
 depth = 84.309
 material = ExtResource( 1 )
@@ -71,6 +75,7 @@ material = ExtResource( 1 )
 [node name="CSGBox3" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, -39 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 6.0
 depth = 1.0
@@ -79,6 +84,7 @@ material = ExtResource( 1 )
 [node name="CSGBox20" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, -10 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 6.0
 depth = 1.0
@@ -87,6 +93,7 @@ material = ExtResource( 1 )
 [node name="CSGBox4" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3, -15 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 8.0
 depth = 4.0
@@ -95,6 +102,7 @@ material = ExtResource( 1 )
 [node name="CSGBox5" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 4.1, -17.3 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 4.4
 depth = 0.6
@@ -103,6 +111,7 @@ material = ExtResource( 1 )
 [node name="CSGBox6" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3.6, -17.9 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 4.4
 depth = 0.6
@@ -111,6 +120,7 @@ material = ExtResource( 1 )
 [node name="CSGBox7" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3, -18.5 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 4.4
 depth = 0.6
@@ -119,6 +129,7 @@ material = ExtResource( 1 )
 [node name="CSGBox8" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.5, -19.1 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 4.4
 depth = 0.6
@@ -127,6 +138,7 @@ material = ExtResource( 1 )
 [node name="CSGBox9" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1.9, -19.7 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 4.4
 depth = 0.6
@@ -135,6 +147,7 @@ material = ExtResource( 1 )
 [node name="CSGBox10" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 1.9, -15 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
@@ -143,6 +156,7 @@ material = ExtResource( 1 )
 [node name="CSGBox11" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 1.4, -14.4 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
@@ -151,6 +165,7 @@ material = ExtResource( 1 )
 [node name="CSGBox12" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 0.9, -13.8 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
@@ -159,6 +174,7 @@ material = ExtResource( 1 )
 [node name="CSGBox13" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3, 0.4, -13.2 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
@@ -167,6 +183,7 @@ material = ExtResource( 1 )
 [node name="CSGBox14" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.700001, 1.9, -15 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
@@ -175,6 +192,7 @@ material = ExtResource( 1 )
 [node name="CSGBox18" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 3.99254, -15.6 )
 use_collision = true
+collision_layer = 5
 width = 14.0
 height = 2.4
 depth = 0.2
@@ -210,7 +228,7 @@ material = ExtResource( 10 )
 
 [node name="CSGBox19" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 3.99254, -15.6 )
-use_collision = true
+calculate_tangents = false
 width = 14.0
 height = 2.4
 depth = 0.2
@@ -247,6 +265,7 @@ material = ExtResource( 10 )
 [node name="CSGBox15" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.700001, 1.4, -14.4 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
@@ -255,6 +274,7 @@ material = ExtResource( 1 )
 [node name="CSGBox16" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.700001, 0.9, -13.8 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
@@ -263,20 +283,21 @@ material = ExtResource( 1 )
 [node name="CSGBox17" type="CSGBox" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.700001, 0.4, -13.2 )
 use_collision = true
+collision_layer = 5
 width = 4.0
 height = 2.4
 depth = 0.6
 material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -2, 6.8, -28 )
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -2, 6.8, 15 )
 
 [node name="Crate" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 6.40001, 2, -1.41201 )
 mass = 10.2041
 
 [node name="Crate3" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 10, 2, -1.41201 )
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 9, 2, -1.41201 )
 mass = 10.2041
 
 [node name="Crate2" parent="." instance=ExtResource( 3 )]
@@ -298,6 +319,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -4.2, -7 )
 [node name="metal_crate" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 4.09254, -39 )
 can_sleep = true
+health = 2000.0
+threshold = 100.0
 
 [node name="Light" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 5.8, -9.4 )
@@ -317,3 +340,51 @@ Target = NodePath("../moving_door")
 [node name="keypad" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, -38.4864 )
 Target = NodePath("../moving_door")
+
+[node name="basket2" parent="." instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8, 2, -1 )
+
+[node name="basket" parent="." instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 2, 3.5 )
+
+[node name="cans" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 6 )
+
+[node name="Can" parent="cans" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1 )
+
+[node name="Can2" parent="cans" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1 )
+
+[node name="Can3" parent="cans" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1 )
+
+[node name="Can6" parent="cans" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2 )
+
+[node name="Can7" parent="cans" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2 )
+
+[node name="Can8" parent="cans" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+
+[node name="cans2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 6.5 )
+
+[node name="Can" parent="cans2" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1 )
+
+[node name="Can2" parent="cans2" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1 )
+
+[node name="Can3" parent="cans2" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1 )
+
+[node name="Can6" parent="cans2" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2 )
+
+[node name="Can7" parent="cans2" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2 )
+
+[node name="Can8" parent="cans2" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )

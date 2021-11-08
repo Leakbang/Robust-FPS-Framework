@@ -14,6 +14,7 @@ var object_grabbed = null
 var Target = null
 var last_used_item = null
 
+onready var ogpos = $use_pos/StaticBody.translation
 
 var use_pos
 
@@ -28,7 +29,7 @@ func _ready():
 	use_icon.set("visible", false)
 	UI.set("visible", false)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	Target = get_collider()
 	use_pos = get_collision_point()
 	if get_collider() and $use_timer.is_stopped() and Target.is_in_group("Useable"):
@@ -48,21 +49,23 @@ func _physics_process(delta):
 			last_used_item.is_mouse_inside = false
 		UI.set("visible", true)
 		unprompt()
+#		if object_grabbed:
+#			DrawDebug.draw_line_3d(object_grabbed.global_transform.origin, $use_pos/StaticBody.global_transform.origin, Color(0,0,1))
+		if get_collider():
+			$use_pos/StaticBody.global_transform.origin = use_pos
+		else:
+			$use_pos/StaticBody.translation = ogpos
 		
 #Decrease mouse sensivity based on the weight of object
-
-	if object_grabbed:
-		object_grabbed.add_central_force(Vector3(0, 100,0))
 
 	# On key press
 	if Input.is_action_pressed("use"):
 		if get_collider() and Target is RigidBody:
 			object_grabbed = Target
+			object_grabbed.set_collision_layer_bit(0, false)
+			object_grabbed.set_collision_mask_bit(0, false)
 			var pth = object_grabbed.get_path()
 			physics_joint.set_node_b(pth)
-#			tween.interpolate_property(Target, "translation",Target.global_transform.origin, $use_pos.global_transform.origin, 0.1, 4, 2)
-#			tween.start()
-#			object_grabbed = Target
 #		if can_use:
 #			can_use = false
 		if get_collider() and $use_timer.is_stopped() and Target.is_in_group("Useable"):
