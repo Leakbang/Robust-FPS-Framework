@@ -33,7 +33,7 @@ ssao_enabled = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -1, -10 )
 
 [node name="moving_door" parent="." instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 6.8, -39 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 5.8, -39 )
 mass = 204.082
 linear_damp = 1.0
 
@@ -387,4 +387,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2 )
 
 [node name="Can8" parent="cans2" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )
+
+[node name="cans3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 6.5 )
+
+[node name="Can" parent="cans3" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1 )
+
+[node name="Can2" parent="cans3" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1 )
+
+[node name="Can3" parent="cans3" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1 )
+
+[node name="Can6" parent="cans3" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2 )
+
+[node name="Can7" parent="cans3" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2 )
+
+[node name="Can8" parent="cans3" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2 )

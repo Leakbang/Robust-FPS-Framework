@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://textures/ui/hand1.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player/Use/Use.gd" type="Script" id=2]
-
-[sub_resource type="CubeMesh" id=1]
-size = Vector3( 0.1, 0.1, 0.1 )
 
 [node name="Use" type="RayCast"]
 enabled = true
@@ -15,32 +12,28 @@ script = ExtResource( 2 )
 [node name="use_pos" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
 
-[node name="StaticBody" type="StaticBody" parent="use_pos"]
+[node name="hand" type="StaticBody" parent="use_pos"]
 collision_layer = 0
 collision_mask = 0
-input_ray_pickable = false
 
-[node name="MeshInstance" type="MeshInstance" parent="use_pos/StaticBody"]
-visible = false
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Joint" type="Generic6DOFJoint" parent="use_pos"]
-nodes/node_a = NodePath("../StaticBody")
-linear_limit_x/softness = 0.01
-linear_limit_x/restitution = 0.01
+[node name="6DOF_joint" type="Generic6DOFJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
+nodes/node_a = NodePath("../use_pos/hand")
+linear_limit_x/enabled = false
 linear_spring_x/enabled = true
-linear_spring_x/stiffness = 1.0
+linear_spring_x/stiffness = 10.0
 linear_spring_x/damping = 1.0
-linear_spring_x/equilibrium_point = 0.5
-linear_limit_y/softness = 0.01
-linear_limit_y/restitution = 0.01
+angular_spring_x/stiffness = 1.0
+linear_limit_y/enabled = false
 linear_spring_y/enabled = true
-linear_spring_y/stiffness = 1.0
+linear_spring_y/stiffness = 10.0
 linear_spring_y/damping = 1.0
-linear_spring_y/equilibrium_point = 0.5
-linear_limit_z/softness = 0.01
-linear_limit_z/restitution = 0.01
+angular_spring_y/stiffness = 1.0
+linear_limit_z/enabled = false
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 10.0
+linear_spring_z/damping = 1.0
+angular_spring_z/stiffness = 1.0
 
 [node name="hand_icon" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.294118 )

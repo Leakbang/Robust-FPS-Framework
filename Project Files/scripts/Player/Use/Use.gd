@@ -3,7 +3,7 @@ extends RayCast
 onready var tween = $tween
 onready var UI = $"crosshair"
 onready var use_icon = $"hand_icon"
-onready var physics_joint = $use_pos/Joint
+onready var physics_joint = $"6DOF_joint"
 
 var mass_limit = 50
 var throw_force = 20
@@ -14,7 +14,7 @@ var object_grabbed = null
 var Target = null
 var last_used_item = null
 
-onready var ogpos = $use_pos/StaticBody.translation
+onready var ogpos = $use_pos/hand
 
 var use_pos
 
@@ -49,13 +49,9 @@ func _physics_process(_delta):
 			last_used_item.is_mouse_inside = false
 		UI.set("visible", true)
 		unprompt()
-#		if object_grabbed:
-#			DrawDebug.draw_line_3d(object_grabbed.global_transform.origin, $use_pos/StaticBody.global_transform.origin, Color(0,0,1))
-		if get_collider():
-			$use_pos/StaticBody.global_transform.origin = use_pos
-		else:
-			$use_pos/StaticBody.translation = ogpos
-		
+	if object_grabbed:
+		DrawDebug.draw_line_3d(ogpos.global_transform.origin, object_grabbed.global_transform.origin, Color(0, 1, 0))
+		DrawDebug.draw_line_3d($"6DOF_joint".global_transform.origin , object_grabbed.global_transform.origin, Color(0, 1, 0))
 #Decrease mouse sensivity based on the weight of object
 
 	# On key press
@@ -64,8 +60,7 @@ func _physics_process(_delta):
 			object_grabbed = Target
 			object_grabbed.set_collision_layer_bit(0, false)
 			object_grabbed.set_collision_mask_bit(0, false)
-			var pth = object_grabbed.get_path()
-			physics_joint.set_node_b(pth)
+			physics_joint.set_node_b(object_grabbed.get_path())
 #		if can_use:
 #			can_use = false
 		if get_collider() and $use_timer.is_stopped() and Target.is_in_group("Useable"):
@@ -78,8 +73,11 @@ func _physics_process(_delta):
 		release()
 		
 func release():
-	object_grabbed = null
-	physics_joint.set_node_b("")
+	if object_grabbed:
+		object_grabbed.set_collision_layer_bit(0, true)
+		object_grabbed.set_collision_mask_bit(0, true)
+		physics_joint.set_node_b("")
+		object_grabbed = null
 
 """
 Replace prompt function with animations
