@@ -1,7 +1,63 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://textures/ui/hand1.png" type="Texture" id=1]
+[ext_resource path="res://textures/ui/Hand.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player/Use/Use.gd" type="Script" id=2]
+[ext_resource path="res://textures/ui/circle.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hand:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Crosshair:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Use"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hand:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Crosshair:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Use" type="RayCast"]
 enabled = true
@@ -9,16 +65,14 @@ cast_to = Vector3( 0, 0, -3 )
 collide_with_areas = true
 script = ExtResource( 2 )
 
-[node name="use_pos" type="Position3D" parent="."]
+[node name="hand" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
-
-[node name="hand" type="StaticBody" parent="use_pos"]
 collision_layer = 0
 collision_mask = 0
 
 [node name="6DOF_joint" type="Generic6DOFJoint" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
-nodes/node_a = NodePath("../use_pos/hand")
+nodes/node_a = NodePath("../hand")
 linear_limit_x/enabled = false
 linear_spring_x/enabled = true
 linear_spring_x/stiffness = 10.0
@@ -35,18 +89,32 @@ linear_spring_z/stiffness = 10.0
 linear_spring_z/damping = 1.0
 angular_spring_z/stiffness = 1.0
 
-[node name="hand_icon" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.294118 )
+[node name="Crosshair" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -12.0
-margin_top = -12.0
-margin_right = 84.0
-margin_bottom = 84.0
-rect_scale = Vector2( 0.25, 0.25 )
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 8.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hand" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = 20.0
+margin_right = 80.0
+margin_bottom = 180.0
 texture = ExtResource( 1 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -54,73 +122,6 @@ __meta__ = {
 [node name="use_timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="tween" type="Tween" parent="."]
-playback_process_mode = 0
-
-[node name="crosshair" type="Control" parent="."]
-modulate = Color( 1, 1, 1, 0.294118 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="crosshair"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -1.0
-margin_right = -4.0
-margin_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect3" type="ColorRect" parent="crosshair"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 4.0
-margin_top = -1.0
-margin_right = 10.0
-margin_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect4" type="ColorRect" parent="crosshair"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 1.0
-margin_top = 4.0
-margin_right = 7.0
-margin_bottom = 6.0
-rect_rotation = 90.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect5" type="ColorRect" parent="crosshair"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 1.0
-margin_top = -10.0
-margin_right = 7.0
-margin_bottom = -8.0
-rect_rotation = 90.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/Use = SubResource( 2 )

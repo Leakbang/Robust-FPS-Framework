@@ -1,28 +1,18 @@
 extends Area
 
-const Drag = 3
-const Density = 5
-
-var water_level
-
-func _ready():
-	water_level = $Surface.global_transform.origin.y
+onready var water_level = $Surface.global_transform.origin.y
 
 var objects = []
 
 var debug_color = Color(0, 1, 0)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if objects:
 		for i in range(0, objects.size()):
 			var bounding_box: AABB = objects[i].get_child(0).get_transformed_aabb()
 			var bounding_box_size: Vector3 = bounding_box.size
-			var area = bounding_box_size.x /5
 			var top = bounding_box.position.y + bounding_box_size.y
 			var bottom = bounding_box.position.y - bounding_box_size.y / 2
-			
-			#var velocity = objects[i].linear_velocity
-			#var drag_force = 0.5 * Drag * area * Density * -velocity.normalized() * velocity.length_squared()
 			
 			var buoyant_force: Vector3
 			var weight = objects[i].weight
@@ -46,7 +36,7 @@ func _on_Area_body_entered(body):
 			body.gravity_scale = 2
 		if groups.has("Wood"):
 			body.gravity_scale = 1
-		
+
 		objects.push_front(body)
 
 

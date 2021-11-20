@@ -8,7 +8,7 @@ var can_use = true
 func _ready():
 	hide()
 
-func _input(event):
+func _input(_event):
 	if Input.is_key_pressed(KEY_F) or Input.is_joy_button_pressed(0, JOY_L):
 		if can_use:
 			can_use = false

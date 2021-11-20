@@ -9,7 +9,7 @@ func activate():
 	if going_up:
 		moving = true
 
-func _process(delta):
+func _process(_delta):
 	if moving:
 		var bounding_box: AABB = $Elevator/Floor.get_transformed_aabb()
 		var bounding_box_size: Vector3 = bounding_box.size
