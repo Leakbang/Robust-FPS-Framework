@@ -1,14 +1,69 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Water/Water.gd" type="Script" id=1]
-[ext_resource path="res://materials/water/water.tres" type="Material" id=3]
+[ext_resource path="res://materials/water/water.tres" type="Material" id=2]
 
 [sub_resource type="PlaneMesh" id=1]
-material = ExtResource( 3 )
+material = ExtResource( 2 )
 size = Vector2( 40, 40 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 20, 4, 20 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Surface:mesh:material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Surface:mesh:material:uv2_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Water"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Surface:mesh:material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Surface:mesh:material:uv2_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -1, 0, -1 ) ]
+}
 
 [node name="Water" type="Area"]
 collision_layer = 5
@@ -26,6 +81,13 @@ material/0 = null
 [node name="Volume" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Water"
+playback_process_mode = 0
+playback_speed = 0.1
+anims/RESET = SubResource( 7 )
+anims/Water = SubResource( 8 )
 
 [connection signal="body_entered" from="." to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Area_body_exited"]
