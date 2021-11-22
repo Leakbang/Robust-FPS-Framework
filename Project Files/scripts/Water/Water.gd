@@ -4,8 +4,6 @@ onready var water_level = $Surface.global_transform.origin.y
 
 var objects = []
 
-var debug_color = Color(0, 1, 0)
-
 func _physics_process(_delta):
 	if objects:
 		for i in range(0, objects.size()):
@@ -19,13 +17,10 @@ func _physics_process(_delta):
 			
 			if top < water_level:
 				buoyant_force.y = weight + (0.2 * weight)
-				debug_color = Color(1, 0, 0)
 			else:
 				var immersion = abs(water_level - bottom) / bounding_box_size.y
-				debug_color = Color(0, 0, 1)
 				buoyant_force.y = weight * immersion
 				
-			DrawDebug.draw_box(bounding_box.position, Vector3(bounding_box_size.x, bounding_box_size.y, bounding_box_size.z), debug_color)
 			objects[i].add_central_force(buoyant_force)
 
 func _on_Area_body_entered(body):
