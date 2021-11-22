@@ -27,14 +27,14 @@ var deltaTime : float = 0.0
 var idletime : float = 0.0
 var mouse_move : Vector2 = Vector2.ZERO
 var mouse_rotation_x : float = 0.0
-var newbob : bool = false
+var newbob : bool = true
 var oldy : float = 0.0
 var v_dmg_time : float = 0.0
 var v_dmg_roll : float = 0.0
 var v_dmg_pitch : float = 0.0
 
 #Bob
-var cl_bob : float = 0.01             # default: 0.01
+var cl_bob : float = 0             # default: 0.01
 var cl_bobup : float = 0.5            # default: 0.5
 var cl_bobcycle : float = 0.8         # default: 0.8
 var ql_bob : float = 0.012            # default: 0.012
@@ -47,7 +47,7 @@ var rollspeed : float = 300.0         # default: 300.0
 var tiltextra : float = 2.0           # default: 2.0
 
 #View Idle
-var idlescale : float= 1.6            # default: 1.6
+var idlescale : float= 0.2            # default: 1.6
 var iyaw_cycle : float = 1.5          # default: 1.5
 var iroll_cycle : float = 1.0         # default: 1.0
 var ipitch_cycle : float = 2.0        # default: 2.0
