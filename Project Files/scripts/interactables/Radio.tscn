@@ -13,9 +13,10 @@ size = Vector3( 0.1, 0.8, 0.1 )
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.5, 0.4, 0.2 )
 
-[node name="Radio" type="RigidBody"]
+[node name="Radio" type="RigidBody" groups=["Pickup"]]
 collision_layer = 5
 collision_mask = 5
+mass = 0.204082
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
@@ -33,3 +34,4 @@ shape = SubResource( 3 )
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
 unit_size = 20.0
+doppler_tracking = 2
