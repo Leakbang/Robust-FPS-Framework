@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://materials/dark_grey.tres" type="Material" id=1]
-[ext_resource path="res://scripts/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Player/q_Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/interactables/Crate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Water/Water.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/interactables/Metal_crate.tscn" type="PackedScene" id=5]

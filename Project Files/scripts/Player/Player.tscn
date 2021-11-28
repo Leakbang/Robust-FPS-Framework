@@ -1,59 +1,55 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scripts/core/view_extended.gd" type="Script" id=1]
-[ext_resource path="res://scripts/core/pmove_extended.gd" type="Script" id=2]
-[ext_resource path="res://scripts/core/paudio.gd" type="Script" id=3]
-[ext_resource path="res://audio/windfall_1.ogg" type="AudioStream" id=4]
-[ext_resource path="res://audio/concrete_0.ogg" type="AudioStream" id=5]
-[ext_resource path="res://scripts/Player/Flashlight/Flashlight.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/Player/Use/Use.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Misc/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/Player/look.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Player/move.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Player/Use/Use.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/Player/Flashlight/Flashlight.tscn" type="PackedScene" id=5]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="PhysicsMaterial" id=8]
+
+[sub_resource type="CylinderShape" id=7]
 height = 3.6
 
-[node name="Player" type="KinematicBody"]
-collision_mask = 3
-script = ExtResource( 2 )
+[sub_resource type="CylinderMesh" id=9]
+height = 3.6
 
-[node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-script = ExtResource( 1 )
-
-[node name="Camera" type="Camera" parent="Head"]
-fov = 90.0
-far = 334.8
-
-[node name="ViewModel" type="Spatial" parent="Head/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.4, -0.75 )
-
-[node name="Flashlight" parent="Head/Camera/ViewModel" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03516, -0.360807, 0 )
-
-[node name="Use" parent="Head/Camera" instance=ExtResource( 9 )]
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
-
-[node name="Audio" type="Node" parent="."]
+[node name="Player" type="RigidBody" groups=["Player"]]
+mode = 2
+mass = 2.04082
+physics_material_override = SubResource( 8 )
+can_sleep = false
 script = ExtResource( 3 )
 
-[node name="FeetFX" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource( 5 )
-volume_db = 0.5
-bus = "FootBus"
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+fov = 80.0
+script = ExtResource( 2 )
 
-[node name="JumpFX" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource( 5 )
-volume_db = 0.5
-bus = "FootBus"
+[node name="Flashlight" parent="Camera" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03516, -0.360807, 0 )
 
-[node name="EnvFX" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource( 4 )
-bus = "Windrush"
+[node name="Use" parent="Camera" instance=ExtResource( 4 )]
 
-[node name="Label" type="Label" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 7 )
+
+[node name="UI" type="Control" parent="."]
 margin_right = 40.0
-margin_bottom = 14.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="UI"]
+margin_left = 49.3253
+margin_top = 43.0945
+margin_right = 154.325
+margin_bottom = 71.0945
+theme = ExtResource( 1 )
+text = "Velocity"
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 9 )
+material/0 = null
