@@ -7,7 +7,7 @@ var objects = []
 func _physics_process(_delta):
 	if objects:
 		for i in range(0, objects.size()):
-			var bounding_box: AABB = objects[i].get_child(0).get_transformed_aabb()
+			var bounding_box: AABB = objects[i].get_node("MeshInstance").get_transformed_aabb()
 			var bounding_box_size: Vector3 = bounding_box.size
 			var top = bounding_box.position.y + bounding_box_size.y
 			var bottom = bounding_box.position.y - bounding_box_size.y / 2
@@ -25,11 +25,13 @@ func _physics_process(_delta):
 
 func _on_Area_body_entered(body):
 	if body is RigidBody:
-		
+		# Set back to normal after exited
 		var groups = body.get_groups()
 		if groups.has("Metal"):
 			body.gravity_scale = 2
 		if groups.has("Wood"):
+			body.gravity_scale = 1
+		if groups.has("Player"):
 			body.gravity_scale = 1
 
 		objects.push_front(body)
