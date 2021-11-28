@@ -30,7 +30,8 @@ bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 28
-outline_color = Color( 0, 0, 0, 1 )
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0.529412 )
 use_mipmaps = true
 font_data = ExtResource( 1 )
 
