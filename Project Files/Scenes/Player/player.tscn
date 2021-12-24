@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxijenj2c5xhp"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player_move.gd" id="1_mhmc3"]
+[ext_resource type="Script" path="res://Scenes/Player/player_look.gd" id="2_6no5l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jswgx"]
+height = 3.6
+
+[node name="Player" type="RigidDynamicBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource( "1_mhmc3" )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( "CapsuleShape3D_jswgx" )
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+script = ExtResource( "2_6no5l" )
