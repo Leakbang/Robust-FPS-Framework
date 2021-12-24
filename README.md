@@ -1,5 +1,7 @@
  # Robust FPS Framework
  An optimized, robust FPS framework.
+ 
+ > ### Update: There are numerous physics and graphical limitations with Godot 3. This project is being ported to Godot 4. Check the Godot 4 branch for progress on the port.
 
  ## Idea
  The idea behind this project is to create a robust and flexible platform for developers to use to create a lively world with ease.
