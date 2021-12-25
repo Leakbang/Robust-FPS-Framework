@@ -18,4 +18,5 @@ func _integrate_forces(state):
 	var drag_force = 1.0 * -linear_velocity.normalized() * linear_velocity.length_squared()
 	var d_force = Vector3(drag_force.x, 0, drag_force.z)
 	
-	state.add_constant_central_force(wishdir * 5 + d_force)
+	#state.add_constant_central_force(wishdir * 5 + d_force)
+	state.apply_central_force(wishdir * 250 + d_force)
