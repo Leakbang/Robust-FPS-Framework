@@ -30,7 +30,7 @@ glow_enabled = true
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-size = Vector3(42, 2, 38)
+size = Vector3(42, 2, 60)
 material = ExtResource( "1_sa6hw" )
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -53,6 +53,62 @@ material = SubResource( "StandardMaterial3D_mjd7q" )
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.8, 0)
 height = 3.6
 sides = 10
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0.8, -20)
+polygon = PackedVector2Array(-9, -1, -9, 6, 1, 0.2, 1, -1)
+depth = 6.0
+material = ExtResource( "1_sa6hw" )
+
+[node name="Stair" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -19)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -1)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -1.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -2)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -3)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, -3.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, -4)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D/Stair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, -4.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
 
 [node name="Lighting" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)

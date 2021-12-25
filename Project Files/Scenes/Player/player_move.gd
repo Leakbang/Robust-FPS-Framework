@@ -12,11 +12,10 @@ func _input(event):
 # Stuttery Movement
 
 func _integrate_forces(state):
-	wishdir = Vector3(forwards_movement, 0, sideways_movement)
-	state.add_constant_central_force(wishdir)
-	
+	wishdir = Vector3(sideways_movement, 0, forwards_movement).normalized()
+	#state.add_constant_central_force(wishdir * 2)
 	# Movement friction (Also check if on the ground)
-	var velocity = linear_velocity
-	var drag_force = 1.0 * -velocity.normalized() * velocity.length_squared()
+	var drag_force = 1.0 * -linear_velocity.normalized() * linear_velocity.length_squared()
+	var d_force = Vector3(drag_force.x, 0, drag_force.z)
 	
-	state.add_constant_central_force(Vector3(drag_force.x, 0, drag_force.z))
+	state.add_constant_central_force(wishdir * 5 + d_force)

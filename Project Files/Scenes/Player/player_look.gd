@@ -1,34 +1,21 @@
-extends Camera3D
+extends Node3D
 
 var player
 
 var mouse_move : Vector2 = Vector2.ZERO
 var mouse_rotation_x : float = 0.0
 var mouse_rotation_y : float = 0.0
-var mouse_sensitivity : float = 0.01
-
-var forward
-var left
+var mouse_sensitivity : float = 0.003
 
 func _ready():
-	player = $Player
+	player = get_parent()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 	
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouse_move = event.relative * 0.1
-		mouse_rotation_x -= event.relative.y * mouse_sensitivity
-		mouse_rotation_x = clamp(mouse_rotation_x, -90, 90)
-		mouse_rotation_y -= event.relative.x * mouse_sensitivity
+		rotation.y -= event.relative.x * mouse_sensitivity
+		# Vertical mouse look, clamped to -90..90 degrees
+		rotation.x = clamp(rotation.x - event.relative.y * mouse_sensitivity, deg2rad(-90), deg2rad(90))
 		
-func _physics_process(delta):
-#	var forward_vec = Vector3.FORWARD
-#	var left_vec = Vector3.LEFT
-#
-#	var basis = get_transform().basis
-#	forward = basis.xform(forward_vec)
-#	left = basis.xform(left_vec)
-	
-	rotation = Vector3(mouse_rotation_x, mouse_rotation_y, 0)
-	
-	#rotation_degrees = Vector3(mouse_rotation_x, mouse_rotation_y, 0)
+# Get directional vectors
