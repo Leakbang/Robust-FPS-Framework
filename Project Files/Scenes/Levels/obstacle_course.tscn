@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=3 uid="uid://hypywu23g2xn"]
+
+[ext_resource type="Material" uid="uid://bhge0uv6pf858" path="res://Materials/dark.tres" id="1_sa6hw"]
+[ext_resource type="Texture2D" uid="uid://c1e1ucq3hxceh" path="res://Textures/orange/texture_01.png" id="2_0xv5a"]
+[ext_resource type="PackedScene" uid="uid://iuc1vi1kkeue" path="res://Scenes/Player/Core/player.tscn" id="3_2alxq"]
+[ext_resource type="PackedScene" uid="uid://ykqivwyimivt" path="res://Scenes/Interactables/Crate.tscn" id="4_16q1d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjd7q"]
+albedo_texture = ExtResource( "2_0xv5a" )
+uv1_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_de47x"]
+sky_top_color = Color(0.568627, 0.698039, 0.807843, 1)
+sky_horizon_color = Color(0.672549, 0.704902, 0.734314, 1)
+ground_bottom_color = Color(0.121569, 0.121569, 0.129412, 1)
+ground_horizon_color = Color(0.672549, 0.704902, 0.734314, 1)
+
+[sub_resource type="Sky" id="Sky_27rnb"]
+sky_material = SubResource( "ProceduralSkyMaterial_de47x" )
+
+[sub_resource type="Environment" id="Environment_fvfm0"]
+background_mode = 2
+sky = SubResource( "Sky_27rnb" )
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(42, 2, 60)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2)
+size = Vector3(22, 6, 0.4)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+operation = 2
+size = Vector3(2, 4, 2)
+material = SubResource( "StandardMaterial3D_mjd7q" )
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1.9, 0)
+operation = 2
+material = SubResource( "StandardMaterial3D_mjd7q" )
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0.8, -20)
+polygon = PackedVector2Array(-9, -1, -9, 6, 1, 0.2, 1, -1)
+depth = 6.0
+material = ExtResource( "1_sa6hw" )
+
+[node name="Stairs" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -19)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -1)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -1.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -2)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -3)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, -3.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, -4)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, -4.5)
+size = Vector3(4, 0.5, 0.5)
+material = ExtResource( "1_sa6hw" )
+
+[node name="Lighting" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource( "Environment_fvfm0" )
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="Player" parent="." instance=ExtResource( "3_2alxq" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 10)
+mass = 70.0
+
+[node name="Crate" parent="." instance=ExtResource( "4_16q1d" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 4)
+
+[node name="Crate2" parent="." instance=ExtResource( "4_16q1d" )]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -8, 3, 7)
+
+[node name="Crate3" parent="." instance=ExtResource( "4_16q1d" )]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -8, 6, 6)
