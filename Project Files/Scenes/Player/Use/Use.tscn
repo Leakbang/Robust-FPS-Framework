@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://barg3rf3pv2wf"]
-
-[node name="Use" type="RayCast3D"]
-target_position = Vector3(0, 0, -3)
